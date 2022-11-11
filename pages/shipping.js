@@ -56,7 +56,7 @@ export default function ShippingScreen() {
       <CheckoutWizard activeStep={1}></CheckoutWizard>
       <Form onSubmit={handleSubmit(submitHandler)}>
         <Typography component="h1" variant="h1">
-          Shipping Address
+          Adresse de livraison
         </Typography>
         <List>
           <ListItem>
@@ -73,14 +73,14 @@ export default function ShippingScreen() {
                   variant="outlined"
                   fullWidth
                   id="fullName"
-                  label="Full Name"
+                  label="Nom complet"
                   inputProps={{ type: 'fullName' }}
                   error={Boolean(errors.fullName)}
                   helperText={
                     errors.fullName
                       ? errors.fullName.type === 'minLength'
-                        ? 'Full Name length is more than 1'
-                        : 'Full Name is required'
+                        ? "Le nom doit avoir plus d'un caractère"
+                        : 'Nom complet obligatoire'
                       : ''
                   }
                   {...field}
@@ -102,14 +102,14 @@ export default function ShippingScreen() {
                   variant="outlined"
                   fullWidth
                   id="address"
-                  label="Address"
+                  label="Addresse"
                   inputProps={{ type: 'address' }}
                   error={Boolean(errors.address)}
                   helperText={
                     errors.address
                       ? errors.address.type === 'minLength'
-                        ? 'Address length is more than 1'
-                        : 'Address is required'
+                        ? 'Adresse invalide'
+                        : "L'adresse est obligatoire"
                       : ''
                   }
                   {...field}
@@ -131,14 +131,14 @@ export default function ShippingScreen() {
                   variant="outlined"
                   fullWidth
                   id="city"
-                  label="City"
+                  label="Ville"
                   inputProps={{ type: 'city' }}
                   error={Boolean(errors.city)}
                   helperText={
                     errors.city
                       ? errors.city.type === 'minLength'
-                        ? 'City length is more than 1'
-                        : 'City is required'
+                        ? 'Format de ville invalide'
+                        : 'Saisie de la ville est obligatoire'
                       : ''
                   }
                   {...field}
@@ -160,14 +160,14 @@ export default function ShippingScreen() {
                   variant="outlined"
                   fullWidth
                   id="postalCode"
-                  label="Postal Code"
+                  label="Code postale"
                   inputProps={{ type: 'postalCode' }}
                   error={Boolean(errors.postalCode)}
                   helperText={
                     errors.postalCode
                       ? errors.postalCode.type === 'minLength'
-                        ? 'Postal Code length is more than 1'
-                        : 'Postal Code is required'
+                        ? 'Code postale invalide'
+                        : 'Veuillez saisir votre code postale'
                       : ''
                   }
                   {...field}
@@ -189,14 +189,14 @@ export default function ShippingScreen() {
                   variant="outlined"
                   fullWidth
                   id="postalCode"
-                  label="Country"
+                  label="Pays"
                   inputProps={{ type: 'country' }}
                   error={Boolean(errors.country)}
                   helperText={
                     errors.country
                       ? errors.country.type === 'minLength'
-                        ? 'Country length is more than 1'
-                        : 'Country is required'
+                        ? 'Format du pays invalide'
+                        : 'Veuillez saisir votre pays'
                       : ''
                   }
                   {...field}
@@ -206,7 +206,7 @@ export default function ShippingScreen() {
           </ListItem>
           <ListItem>
             <Button variant="contained" type="submit" fullWidth color="primary">
-              Continue
+              Continuer
             </Button>
           </ListItem>
         </List>

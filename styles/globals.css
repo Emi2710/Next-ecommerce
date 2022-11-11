@@ -4,7 +4,10 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: '#F7F7F7';
+
 }
+
 
 a {
   color: inherit;
@@ -14,3 +17,24 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.bold {
+  font-weight: bold;
+}
+
+.list-style-none {
+  list-style-type: none;
+}
+
+button.add-to-cart-hover:hover {
+  background-color: #182E43;
+}
+
+.menu-categories::-webkit-scrollbar {
+  display:none;
+}
+
+.menu-categories p {
+  margin-right: 20px;
+}
+
