@@ -142,7 +142,7 @@ export default function SearchScreen() {
     const quantity = existItem ? existItem.quantity + 1 : 1;
     const { data } = await axios.get(`/api/products/${product._id}`);
     if (data.countInStock < quantity) {
-      enqueueSnackbar('Sorry. Product is out of stock', { variant: 'error' });
+      enqueueSnackbar('Nous sommes désolés, le produit est en rupture de stock', { variant: 'error' });
       return;
     }
     dispatch({

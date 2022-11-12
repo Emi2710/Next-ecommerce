@@ -89,7 +89,7 @@ export default function ProductScreen(props) {
           <Box sx={classes.section}>
             <NextLink href="/" passHref>
               <Link>
-                <Typography color='secondary'>Revenir en arrière</Typography>
+                <Typography>back to result</Typography>
               </Link>
             </NextLink>
           </Box>
@@ -106,16 +106,16 @@ export default function ProductScreen(props) {
             <Grid item md={3} xs={12}>
               <List>
                 <ListItem>
-                  <Typography component="h1" variant="h1" sx={classes.productName}>
+                  <Typography component="h1" variant="h1">
                     {product.name}
                   </Typography>
                 </ListItem>
-                <ListItem>Catégorie: {product.category}</ListItem>
-                <ListItem>Marque: {product.brand}</ListItem>
+                <ListItem>Category: {product.category}</ListItem>
+                <ListItem>Brand: {product.brand}</ListItem>
                 <ListItem>
                   <Rating value={product.rating} readOnly></Rating>
                   <Typography sx={classes.smallText}>
-                    ({product.numReviews} avis)
+                    ({product.numReviews} reviews)
                   </Typography>
                 </ListItem>
                 <ListItem>
@@ -129,38 +129,35 @@ export default function ProductScreen(props) {
                   <ListItem>
                     <Grid container>
                       <Grid item xs={6}>
-                        <Typography>Prix</Typography>
+                        <Typography>Price</Typography>
                       </Grid>
                       <Grid item xs={6}>
-                        <Typography>€{product.price}</Typography>
+                        <Typography>${product.price}</Typography>
                       </Grid>
                     </Grid>
                   </ListItem>
                   <ListItem>
                     <Grid container>
                       <Grid item xs={6}>
-                        <Typography>Statut</Typography>
+                        <Typography>Status</Typography>
                       </Grid>
                       <Grid item xs={6}>
                         <Typography>
                           {product.countInStock > 0
-                            ? 'En stock'
-                            : 'Non disponible'}
+                            ? 'In stock'
+                            : 'Unavailable'}
                         </Typography>
                       </Grid>
                     </Grid>
                   </ListItem>
                   <ListItem>
-                    {product.countInStock > 0 ? <>
                     <Button
                       onClick={addToCartHandler}
                       fullWidth
                       variant="contained"
                     >
-                      Ajouter au panier
-                    </Button></> : 'Indisponible'
-                    }
-                    
+                      Add to cart
+                    </Button>
                   </ListItem>
                 </List>
               </Card>

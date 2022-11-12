@@ -45,9 +45,7 @@ export default function ProductItem({ product, addToCartHandler }) {
       
         </CardActionArea>
       </NextLink>
-      <CardActions>
-        
-      </CardActions>
+      
     </Card>
   );
 }

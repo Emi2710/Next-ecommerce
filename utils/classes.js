@@ -1,5 +1,4 @@
-import { Block } from "@mui/icons-material";
-import { autocompleteClasses } from "@mui/material";
+
 
 const classes = {
   section: {
@@ -18,10 +17,7 @@ const classes = {
     minHeight: '80vh',
     
   },
-  mainChildren: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
+  
   footer: {
     marginTop: 1,
     textAlign: 'center',
@@ -88,7 +84,6 @@ const classes = {
     backgroundColor: "#324D67",
     padding: '15px',
     color: "#fff",
-    overflowX: 'auto',
   },
   productItemButton: {
     //backgroundColor: "#324D67",

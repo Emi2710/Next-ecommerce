@@ -30,11 +30,5 @@ button.add-to-cart-hover:hover {
   background-color: #182E43;
 }
 
-.menu-categories::-webkit-scrollbar {
-  display:none;
-}
 
-.menu-categories p {
-  margin-right: 20px;
-}
 

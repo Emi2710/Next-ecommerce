@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import logo from '../assets/logo.svg';
-import cartIcon from '../assets/cart.svg';
 
 import { createTheme } from '@mui/material/styles';
 import {
@@ -20,7 +19,6 @@ import {
   ListItemText,
   Menu,
   MenuItem,
-  Switch,
   ThemeProvider,
   Toolbar,
   Typography,
@@ -43,7 +41,7 @@ import { getError } from '../utils/error';
 export default function Layout({ title, description, children }) {
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
-  const { darkMode, cart, userInfo } = state;
+  const { cart, userInfo } = state;
   const theme = createTheme({
     components: {
       MuiLink: {
@@ -134,7 +132,7 @@ export default function Layout({ title, description, children }) {
   return (
     <>
       <Head>
-        <title>{title ? `${title} - Sanity Amazona` : 'Sanity Amazona'}</title>
+        <title>{title ? `${title} - E-scoot` : 'E-scoot'}</title>
         {description && <meta name="description" content={description}></meta>}
       </Head>
       <ThemeProvider theme={theme}>
