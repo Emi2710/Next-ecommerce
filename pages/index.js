@@ -40,7 +40,7 @@ export default function Home() {
     const quantity = existItem ? existItem.quantity + 1 : 1;
     const { data } = await axios.get(`/api/products/${product._id}`);
     if (data.countInStock < quantity) {
-      enqueueSnackbar('Nous sommes désolés, le produit est en rupture de stock.', { variant: 'error' });
+      enqueueSnackbar('Sorry. Product is out of stock', { variant: 'error' });
       return;
     }
     dispatch({
@@ -55,7 +55,7 @@ export default function Home() {
         quantity,
       },
     });
-    enqueueSnackbar(`${product.name} ajouté au panier.`, {
+    enqueueSnackbar(`${product.name} added to the cart`, {
       variant: 'success',
     });
     router.push('/cart');

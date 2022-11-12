@@ -24,15 +24,15 @@ import { Store } from '../utils/Store';
 
 const prices = [
   {
-    name: '€1 à €50',
+    name: '$1 to $50',
     value: '1-50',
   },
   {
-    name: '€51 à €200',
+    name: '$51 to $200',
     value: '51-200',
   },
   {
-    name: '€201 to €1000',
+    name: '$201 to $1000',
     value: '201-1000',
   },
 ];
@@ -170,9 +170,9 @@ export default function SearchScreen() {
           <List>
             <ListItem>
               <Box sx={classes.fullWidth}>
-                <Typography>Catégories</Typography>
+                <Typography>Categories</Typography>
                 <Select fullWidth value={category} onChange={categoryHandler}>
-                  <MenuItem value="all">Tout</MenuItem>
+                  <MenuItem value="all">All</MenuItem>
                   {categories &&
                     categories.map((category) => (
                       <MenuItem key={category} value={category}>
@@ -184,9 +184,9 @@ export default function SearchScreen() {
             </ListItem>
             <ListItem>
               <Box sx={classes.fullWidth}>
-                <Typography>Prix</Typography>
+                <Typography>Prices</Typography>
                 <Select value={price} onChange={priceHandler} fullWidth>
-                  <MenuItem value="all">Tout</MenuItem>
+                  <MenuItem value="all">All</MenuItem>
                   {prices.map((price) => (
                     <MenuItem key={price.value} value={price.value}>
                       {price.name}
@@ -197,9 +197,9 @@ export default function SearchScreen() {
             </ListItem>
             <ListItem>
               <Box sx={classes.fullWidth}>
-                <Typography>Avis</Typography>
+                <Typography>Ratings</Typography>
                 <Select value={rating} onChange={ratingHandler} fullWidth>
-                  <MenuItem value="all">Tout</MenuItem>
+                  <MenuItem value="all">All</MenuItem>
                   {ratings.map((rating) => (
                     <MenuItem dispaly="flex" key={rating} value={rating}>
                       <Rating value={rating} readOnly />
@@ -228,13 +228,13 @@ export default function SearchScreen() {
 
             <Grid item>
               <Typography component="span" sx={classes.sort}>
-                Trier
+                Sort by
               </Typography>
               <Select value={sort} onChange={sortHandler}>
-                <MenuItem value="default">Par défaut</MenuItem>
-                <MenuItem value="lowest">Prix: plus petit au plus grand</MenuItem>
-                <MenuItem value="highest">Prix: plus grand au plus petit</MenuItem>
-                <MenuItem value="toprated">Avis des utilisateurs</MenuItem>
+                <MenuItem value="default">Default</MenuItem>
+                <MenuItem value="lowest">Price: Low to High</MenuItem>
+                <MenuItem value="highest">Price: High to Low</MenuItem>
+                <MenuItem value="toprated">Customer Reviews</MenuItem>
               </Select>
             </Grid>
           </Grid>

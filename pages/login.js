@@ -52,7 +52,7 @@ export default function LoginScreen() {
     <Layout title="Login">
       <Form onSubmit={handleSubmit(submitHandler)}>
         <Typography component="h1" variant="h1">
-          Connexion
+          Login
         </Typography>
         <List>
           <ListItem>
@@ -75,8 +75,8 @@ export default function LoginScreen() {
                   helperText={
                     errors.email
                       ? errors.email.type === 'pattern'
-                        ? "L'email est invalide"
-                        : "L'email est obligatoire"
+                        ? 'Email is not valid'
+                        : 'Email is required'
                       : ''
                   }
                   {...field}
@@ -104,8 +104,8 @@ export default function LoginScreen() {
                   helperText={
                     errors.password
                       ? errors.password.type === 'minLength'
-                        ? 'Le mot doit avoir au moins 5 caractères'
-                        : 'Le mot de passe est obligatoire'
+                        ? 'Password length is more than 5'
+                        : 'Password is required'
                       : ''
                   }
                   {...field}
@@ -115,13 +115,13 @@ export default function LoginScreen() {
           </ListItem>
           <ListItem>
             <Button variant="contained" type="submit" fullWidth color="primary">
-              Se connecter
+              Login
             </Button>
           </ListItem>
           <ListItem>
-            Vous n'avez pas de compte? {' '}
+            Do not have an account?{' '}
             <NextLink href={`/register?redirect=${redirect || '/'}`} passHref>
-              <Link>S'inscrire</Link>
+              <Link>Register</Link>
             </NextLink>
           </ListItem>
         </List>

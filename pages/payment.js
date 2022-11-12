@@ -37,7 +37,7 @@ export default function PaymentScreen() {
   const submitHandler = (e) => {
     e.preventDefault();
     if (!paymentMethod) {
-      enqueueSnackbar('Veuillez choisir une méthode de paiement', { variant: 'error' });
+      enqueueSnackbar('Payment method is required', { variant: 'error' });
     } else {
       dispatch({ type: 'SAVE_PAYMENT_METHOD', payload: paymentMethod });
       jsCookie.set('paymentMethod', paymentMethod);
@@ -49,7 +49,7 @@ export default function PaymentScreen() {
       <CheckoutWizard activeStep={2}></CheckoutWizard>
       <Form onSubmit={submitHandler}>
         <Typography component="h1" variant="h1">
-          Méthode de paiement
+          Payment Method
         </Typography>
         <List>
           <ListItem>
@@ -70,12 +70,17 @@ export default function PaymentScreen() {
                   value="Stripe"
                   control={<Radio />}
                 ></FormControlLabel>
+                <FormControlLabel
+                  label="Cash"
+                  value="Cash"
+                  control={<Radio />}
+                ></FormControlLabel>
               </RadioGroup>
             </FormControl>
           </ListItem>
           <ListItem>
             <Button fullWidth type="submit" variant="contained" color="primary">
-              Continuer
+              Continue
             </Button>
           </ListItem>
           <ListItem>
@@ -86,7 +91,7 @@ export default function PaymentScreen() {
               color="secondary"
               onClick={() => router.push('/shipping')}
             >
-              Retour
+              Back
             </Button>
           </ListItem>
         </List>

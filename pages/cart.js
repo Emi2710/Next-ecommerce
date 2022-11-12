@@ -40,7 +40,7 @@ function CartScreen() {
   const updateCartHandler = async (item, quantity) => {
     const { data } = await axios.get(`/api/products/${item._id}`);
     if (data.countInStock < quantity) {
-      enqueueSnackbar('Nous sommes désolés, le produit est en rupture de stock.', { variant: 'error' });
+      enqueueSnackbar('Sorry. Product is out of stock', { variant: 'error' });
       return;
     }
     dispatch({
@@ -65,14 +65,14 @@ function CartScreen() {
   return (
     <Layout title="Shopping Cart">
       <Typography component="h1" variant="h1">
-        Votre panier
+        Shopping Cart
       </Typography>
       {cartItems.length === 0 ? (
         <Box>
           <Typography>
-            Le panier est vide.{' '}
+            Cart is empty.{' '}
             <NextLink href="/" passHref>
-              <Link>Continuer le shopping</Link>
+              <Link>Go shopping</Link>
             </NextLink>
           </Typography>
         </Box>
@@ -84,10 +84,10 @@ function CartScreen() {
                 <TableHead>
                   <TableRow>
                     <TableCell>Image</TableCell>
-                    <TableCell>Produit</TableCell>
-                    <TableCell align="right">Quantité</TableCell>
-                    <TableCell align="right">Prix</TableCell>
-                    <TableCell align="right">Supprimer</TableCell>
+                    <TableCell>Name</TableCell>
+                    <TableCell align="right">Qauntity</TableCell>
+                    <TableCell align="right">Price</TableCell>
+                    <TableCell align="right">Action</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -108,7 +108,7 @@ function CartScreen() {
                       <TableCell>
                         <NextLink href={`/product/${item.slug}`} passHref>
                           <Link>
-                            <Typography color="#324D67">{item.name}</Typography>
+                            <Typography>{item.name}</Typography>
                           </Link>
                         </NextLink>
                       </TableCell>
@@ -127,7 +127,7 @@ function CartScreen() {
                         </Select>
                       </TableCell>
                       <TableCell align="right">
-                        <Typography>€{item.price}</Typography>
+                        <Typography>${item.price}</Typography>
                       </TableCell>
                       <TableCell align="right">
                         <Button
@@ -149,8 +149,8 @@ function CartScreen() {
               <List>
                 <ListItem>
                   <Typography variant="h2">
-                    Total ({cartItems.reduce((a, c) => a + c.quantity, 0)}{' '}
-                    produits) : €{' '}
+                    Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}{' '}
+                    items) : ${' '}
                     {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
                   </Typography>
                 </ListItem>
@@ -163,7 +163,7 @@ function CartScreen() {
                     color="primary"
                     variant="contained"
                   >
-                    Paiement
+                    Checkout
                   </Button>
                 </ListItem>
               </List>

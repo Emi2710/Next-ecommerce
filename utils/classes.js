@@ -4,16 +4,12 @@ const classes = {
   section: {
     marginTop: 1,
     marginBottom: 1,
-    boxShadow: 0,
-    borderBottom: '1px solid #CDCDCD',
-    borderRadius: 0
-    
   },
   smallText: {
     fontSize: '15px',
   },
   main: {
-    paddingTop: 2,
+    marginTop: 2,
     minHeight: '80vh',
     
   },
@@ -23,20 +19,21 @@ const classes = {
     textAlign: 'center',
   },
   appbar: {
-    backgroundColor: '#fff',
+    backgroundColor: '#203040',
     '& a': {
-      color: '#000',
+      color: '#ffffff',
       marginLeft: 1,
     },
   },
   toolbar: {
     justifyContent: 'space-between',
   },
-  connexion: {
+  brand: {
     fontWeight: 'bold',
+    fontSize: '1.5rem',
   },
   navbarButton: {
-    color: '#000',
+    color: '#ffffff',
     textTransform: 'initial',
   },
   fullWidth: {
@@ -55,7 +52,7 @@ const classes = {
 
   searchForm: {
     border: '1px solid #ffffff',
-    backgroundColor: '#F7F7F7',
+    backgroundColor: '#ffffff',
     borderRadius: 1,
   },
   searchInput: {
@@ -66,7 +63,7 @@ const classes = {
     },
   },
   searchButton: {
-    backgroundColor: '#324D67',
+    backgroundColor: '#f8c040',
     padding: 1,
     borderRadius: '0 5px 5px 0',
     '& span': {

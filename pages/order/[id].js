@@ -63,6 +63,7 @@ function OrderScreen({ params }) {
     paymentMethod,
     orderItems,
     itemsPrice,
+    taxPrice,
     shippingPrice,
     totalPrice,
     isPaid,
@@ -107,7 +108,7 @@ function OrderScreen({ params }) {
           type: 'resetOptions',
           value: {
             'client-id': clientId,
-            currency: 'EUR',
+            currency: 'USD',
           },
         });
         paypalDispatch({ type: 'setLoadingStatus', value: 'pending' });
@@ -155,7 +156,7 @@ function OrderScreen({ params }) {
   return (
     <Layout title={`Order ${orderId}`}>
       <Typography component="h1" variant="h1">
-        Commande n° {orderId}
+        Order {orderId}
       </Typography>
 
       {loading ? (
@@ -169,24 +170,19 @@ function OrderScreen({ params }) {
               <List>
                 <ListItem>
                   <Typography component="h2" variant="h2">
-                    Adresse de livraison
+                    Shipping Address
                   </Typography>
                 </ListItem>
                 <ListItem>
-                  <ul className='list-style-none'>
-                    <li>{shippingAddress.fullName}</li>
-                    <li>{shippingAddress.address}</li>
-                    <li>{shippingAddress.city}, {' '}{shippingAddress.postalCode}</li>
-                    <li>{shippingAddress.country}</li>
-                  </ul>
-                  
-                  
+                  {shippingAddress.fullName}, {shippingAddress.address},{' '}
+                  {shippingAddress.city}, {shippingAddress.postalCode},{' '}
+                  {shippingAddress.country}
                 </ListItem>
                 <ListItem>
-                  Statut:{' '}
+                  Status:{' '}
                   {isDelivered
-                    ? `délivré le ${deliveredAt}`
-                    : 'non livré'}
+                    ? `delivered at ${deliveredAt}`
+                    : 'not delivered'}
                 </ListItem>
               </List>
             </Card>
@@ -195,12 +191,12 @@ function OrderScreen({ params }) {
               <List>
                 <ListItem>
                   <Typography component="h2" variant="h2">
-                    Méthode de paiement
+                    Payment Method
                   </Typography>
                 </ListItem>
                 <ListItem>{paymentMethod}</ListItem>
                 <ListItem>
-                  Statut: {isPaid ? `payé le ${paidAt}` : 'impayé'}
+                  Status: {isPaid ? `paid at ${paidAt}` : 'not paid'}
                 </ListItem>
               </List>
             </Card>
@@ -209,7 +205,7 @@ function OrderScreen({ params }) {
               <List>
                 <ListItem>
                   <Typography component="h2" variant="h2">
-                    Produits commandés
+                    Order Items
                   </Typography>
                 </ListItem>
                 <ListItem>
@@ -218,9 +214,9 @@ function OrderScreen({ params }) {
                       <TableHead>
                         <TableRow>
                           <TableCell>Image</TableCell>
-                          <TableCell>Produit</TableCell>
-                          <TableCell align="right">Quantité</TableCell>
-                          <TableCell align="right">Prix</TableCell>
+                          <TableCell>Name</TableCell>
+                          <TableCell align="right">Quantity</TableCell>
+                          <TableCell align="right">Price</TableCell>
                         </TableRow>
                       </TableHead>
                       <TableBody>
@@ -249,7 +245,7 @@ function OrderScreen({ params }) {
                               <Typography>{item.quantity}</Typography>
                             </TableCell>
                             <TableCell align="right">
-                              <Typography>€{item.price}</Typography>
+                              <Typography>${item.price}</Typography>
                             </TableCell>
                           </TableRow>
                         ))}
@@ -264,26 +260,35 @@ function OrderScreen({ params }) {
             <Card sx={classes.section}>
               <List>
                 <ListItem>
-                  <Typography variant="h2">Récapitulatif de la commande</Typography>
+                  <Typography variant="h2">Order Summary</Typography>
                 </ListItem>
                 <ListItem>
                   <Grid container>
                     <Grid item xs={6}>
-                      <Typography>Produits:</Typography>
+                      <Typography>Items:</Typography>
                     </Grid>
                     <Grid item xs={6}>
-                      <Typography align="right">€{itemsPrice}</Typography>
+                      <Typography align="right">${itemsPrice}</Typography>
                     </Grid>
                   </Grid>
                 </ListItem>
-                
                 <ListItem>
                   <Grid container>
                     <Grid item xs={6}>
-                      <Typography>Livraison:</Typography>
+                      <Typography>Tax:</Typography>
                     </Grid>
                     <Grid item xs={6}>
-                      <Typography align="right">€{shippingPrice}</Typography>
+                      <Typography align="right">${taxPrice}</Typography>
+                    </Grid>
+                  </Grid>
+                </ListItem>
+                <ListItem>
+                  <Grid container>
+                    <Grid item xs={6}>
+                      <Typography>Shipping:</Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                      <Typography align="right">${shippingPrice}</Typography>
                     </Grid>
                   </Grid>
                 </ListItem>
@@ -296,7 +301,7 @@ function OrderScreen({ params }) {
                     </Grid>
                     <Grid item xs={6}>
                       <Typography align="right">
-                        <strong>€{totalPrice}</strong>
+                        <strong>${totalPrice}</strong>
                       </Typography>
                     </Grid>
                   </Grid>
