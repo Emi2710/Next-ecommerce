@@ -52,14 +52,26 @@ export default function Layout({ title, description, children }) {
     },
     typography: {
       h1: {
-        fontSize: '1.6rem',
-        fontWeight: 400,
+        fontSize: '1.8rem',
+        fontWeight: 600,
         margin: '1rem 0',
       },
       h2: {
-        fontSize: '1.4rem',
-        fontWeight: 400,
+        fontSize: '1.6rem',
+        fontWeight: 600,
         margin: '1rem 0',
+        color: "#324D67",
+        display: 'flex',
+        justifyContent: 'center'
+      },
+    },
+
+    palette: {
+      primary: {
+        main: '#f0c000',
+      },
+      secondary: {
+        main: '#324D67',
       },
     },
     
@@ -126,7 +138,7 @@ export default function Layout({ title, description, children }) {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <AppBar position="static" sx={classes.appbar}>
+        <AppBar position="static" sx={classes.appbar} elevation={0}>
           <Toolbar sx={classes.toolbar}>
             <Box display="flex" alignItems="center">
               <IconButton
@@ -139,7 +151,7 @@ export default function Layout({ title, description, children }) {
               </IconButton>
               <NextLink href="/" passHref>
                 <Link>
-                  <Image src={logo} alt="Logo e-scoot" />
+                  <Image src={logo} alt="Logo e-scoot" width='75px' />
                 </Link>
               </NextLink>
             </Box>
@@ -188,7 +200,7 @@ export default function Layout({ title, description, children }) {
                   <InputBase
                     name="query"
                     sx={classes.searchInput}
-                    placeholder="Search products"
+                    placeholder="Rechercher un produit"
                     onChange={queryChangeHandler}
                   />
                   <IconButton
@@ -204,22 +216,6 @@ export default function Layout({ title, description, children }) {
 
             <Box>
               
-              <NextLink href="/cart" passHref>
-                <Link>
-                  <Typography component="span">
-                    {cart.cartItems.length > 0 ? (
-                      <Badge
-                        color="secondary"
-                        badgeContent={cart.cartItems.length}
-                      >
-                        Cart
-                      </Badge>
-                    ) : (
-                      'Cart'
-                    )}
-                  </Typography>
-                </Link>
-              </NextLink>
               {userInfo ? (
                 <>
                   <Button
@@ -228,7 +224,7 @@ export default function Layout({ title, description, children }) {
                     sx={classes.navbarButton}
                     onClick={loginClickHandler}
                   >
-                    {userInfo.name}
+                    Bonjour {userInfo.name}
                   </Button>
                   <Menu
                     id="simple-menu"
@@ -240,28 +236,56 @@ export default function Layout({ title, description, children }) {
                     <MenuItem
                       onClick={(e) => loginMenuCloseHandler(e, '/profile')}
                     >
-                      Profile
+                      Profil
                     </MenuItem>
                     <MenuItem
                       onClick={(e) =>
                         loginMenuCloseHandler(e, '/order-history')
                       }
                     >
-                      Order History
+                      Historique de commandes
                     </MenuItem>
-                    <MenuItem onClick={logoutClickHandler}>Logout</MenuItem>
+                    <MenuItem onClick={logoutClickHandler}>Déconnexion</MenuItem>
                   </Menu>
                 </>
               ) : (
                 <NextLink href="/login" passHref>
-                  <Link>Login</Link>
+                  <Link>Se connecter</Link>
                 </NextLink>
               )}
+
+              <NextLink href="/cart" passHref>
+                <Link>
+                  <Typography component="span">
+                    {cart.cartItems.length > 0 ? (
+                      <Badge
+                        color="secondary"
+                        badgeContent={cart.cartItems.length}
+                      >
+                        Panier
+                      </Badge>
+                    ) : (
+                      'Cart'
+                    )}
+                  </Typography>
+                </Link>
+              </NextLink>
             </Box>
           </Toolbar>
         </AppBar>
+        <Box sx={classes.categories} className="menu-categories">
+            <Typography>Roues</Typography>
+            <Typography>Electronique</Typography>
+            <Typography>Trotinettes</Typography>
+            <Typography>Accessoires</Typography>
+            <Typography>Voitures</Typography>
+            <Typography>Camions</Typography>
+            
+        </Box>
         <Container component="main" sx={classes.main}>
-          {children}
+          <Box sx={classes.mainChildren}>
+            {children}
+          </Box>
         </Container>
         <Box component="footer" sx={classes.footer}>
           <Typography>All rights reserved. Sanity Amazona.</Typography>

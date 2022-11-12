@@ -24,15 +24,15 @@ import { Store } from '../utils/Store';
 
 const prices = [
   {
-    name: '$1 to $50',
+    name: '€1 à €50',
     value: '1-50',
   },
   {
-    name: '$51 to $200',
+    name: '€51 to €200',
     value: '51-200',
   },
   {
-    name: '$201 to $1000',
+    name: '€201 to €1000',
     value: '201-1000',
   },
 ];
@@ -157,7 +157,7 @@ export default function SearchScreen() {
         quantity,
       },
     });
-    enqueueSnackbar(`${product.name} added to the cart`, {
+    enqueueSnackbar(`${product.name} ajouté au panier`, {
       variant: 'success',
     });
     router.push('/cart');
@@ -170,9 +170,9 @@ export default function SearchScreen() {
           <List>
             <ListItem>
               <Box sx={classes.fullWidth}>
-                <Typography>Categories</Typography>
+                <Typography>Catégories</Typography>
                 <Select fullWidth value={category} onChange={categoryHandler}>
-                  <MenuItem value="all">All</MenuItem>
+                  <MenuItem value="all">Tout</MenuItem>
                   {categories &&
                     categories.map((category) => (
                       <MenuItem key={category} value={category}>
@@ -184,9 +184,9 @@ export default function SearchScreen() {
             </ListItem>
             <ListItem>
               <Box sx={classes.fullWidth}>
-                <Typography>Prices</Typography>
+                <Typography>Prix</Typography>
                 <Select value={price} onChange={priceHandler} fullWidth>
-                  <MenuItem value="all">All</MenuItem>
+                  <MenuItem value="all">Tout</MenuItem>
                   {prices.map((price) => (
                     <MenuItem key={price.value} value={price.value}>
                       {price.name}
@@ -197,13 +197,13 @@ export default function SearchScreen() {
             </ListItem>
             <ListItem>
               <Box sx={classes.fullWidth}>
-                <Typography>Ratings</Typography>
+                <Typography>Avis</Typography>
                 <Select value={rating} onChange={ratingHandler} fullWidth>
-                  <MenuItem value="all">All</MenuItem>
+                  <MenuItem value="all">Tout</MenuItem>
                   {ratings.map((rating) => (
                     <MenuItem dispaly="flex" key={rating} value={rating}>
                       <Rating value={rating} readOnly />
-                      <Typography component="span">&amp; Up</Typography>
+                      <Typography component="span">&amp; plus</Typography>
                     </MenuItem>
                   ))}
                 </Select>
@@ -214,8 +214,8 @@ export default function SearchScreen() {
         <Grid item md={9}>
           <Grid container justifyContent="space-between" alignItems="center">
             <Grid item>
-              {products && products.length !== 0 ? products.length : 'No'}{' '}
-              Results
+              {products && products.length !== 0 ? products.length : 'Pas de'}{' '}
+              Résultats
               {query !== 'all' && query !== '' && ' : ' + query}
               {price !== 'all' && ' : Price ' + price}
               {rating !== 'all' && ' : Rating ' + rating + ' & up'}
@@ -228,13 +228,13 @@ export default function SearchScreen() {
 
             <Grid item>
               <Typography component="span" sx={classes.sort}>
-                Sort by
+                Trier par
               </Typography>
               <Select value={sort} onChange={sortHandler}>
-                <MenuItem value="default">Default</MenuItem>
-                <MenuItem value="lowest">Price: Low to High</MenuItem>
-                <MenuItem value="highest">Price: High to Low</MenuItem>
-                <MenuItem value="toprated">Customer Reviews</MenuItem>
+                <MenuItem value="default">Défaut</MenuItem>
+                <MenuItem value="lowest">Prix: plus petit au plus grand</MenuItem>
+                <MenuItem value="highest">Prix: plus grand au plus petit</MenuItem>
+                <MenuItem value="toprated">Avis des utilisateurs</MenuItem>
               </Select>
             </Grid>
           </Grid>

@@ -58,7 +58,7 @@ export default function ProductScreen(props) {
     const quantity = existItem ? existItem.quantity + 1 : 1;
     const { data } = await axios.get(`/api/products/${product._id}`);
     if (data.countInStock < quantity) {
-      enqueueSnackbar('Sorry. Product is out of stock', { variant: 'error' });
+      enqueueSnackbar('Nous sommes désolés, le produit est en rupture de stock.', { variant: 'error' });
       return;
     }
     dispatch({
@@ -73,7 +73,7 @@ export default function ProductScreen(props) {
         quantity,
       },
     });
-    enqueueSnackbar(`${product.name} added to the cart`, {
+    enqueueSnackbar(`${product.name} ajouté au panier`, {
       variant: 'success',
     });
     router.push('/cart');
@@ -89,7 +89,7 @@ export default function ProductScreen(props) {
           <Box sx={classes.section}>
             <NextLink href="/" passHref>
               <Link>
-                <Typography>back to result</Typography>
+                <Typography color="secondary">Revenir en arrière</Typography>
               </Link>
             </NextLink>
           </Box>
@@ -110,12 +110,12 @@ export default function ProductScreen(props) {
                     {product.name}
                   </Typography>
                 </ListItem>
-                <ListItem>Category: {product.category}</ListItem>
-                <ListItem>Brand: {product.brand}</ListItem>
+                <ListItem>Catégorie: {product.category}</ListItem>
+                <ListItem>Marque: {product.brand}</ListItem>
                 <ListItem>
                   <Rating value={product.rating} readOnly></Rating>
                   <Typography sx={classes.smallText}>
-                    ({product.numReviews} reviews)
+                    ({product.numReviews} avis)
                   </Typography>
                 </ListItem>
                 <ListItem>
@@ -129,23 +129,23 @@ export default function ProductScreen(props) {
                   <ListItem>
                     <Grid container>
                       <Grid item xs={6}>
-                        <Typography>Price</Typography>
+                        <Typography>Prix</Typography>
                       </Grid>
                       <Grid item xs={6}>
-                        <Typography>${product.price}</Typography>
+                        <Typography>€{product.price}</Typography>
                       </Grid>
                     </Grid>
                   </ListItem>
                   <ListItem>
                     <Grid container>
                       <Grid item xs={6}>
-                        <Typography>Status</Typography>
+                        <Typography>Statut</Typography>
                       </Grid>
                       <Grid item xs={6}>
                         <Typography>
                           {product.countInStock > 0
-                            ? 'In stock'
-                            : 'Unavailable'}
+                            ? 'En stock'
+                            : 'Indisponible'}
                         </Typography>
                       </Grid>
                     </Grid>
@@ -156,7 +156,7 @@ export default function ProductScreen(props) {
                       fullWidth
                       variant="contained"
                     >
-                      Add to cart
+                      Ajouter au panier
                     </Button>
                   </ListItem>
                 </List>

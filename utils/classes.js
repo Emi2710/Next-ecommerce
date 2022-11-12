@@ -4,12 +4,15 @@ const classes = {
   section: {
     marginTop: 1,
     marginBottom: 1,
+    boxShadow: 0,
+    borderBottom: '1px solid #CDCDCD',
+    borderRadius: 0
   },
   smallText: {
     fontSize: '15px',
   },
   main: {
-    marginTop: 2,
+    paddingTop: 2,
     minHeight: '80vh',
     
   },
@@ -19,9 +22,9 @@ const classes = {
     textAlign: 'center',
   },
   appbar: {
-    backgroundColor: '#203040',
+    backgroundColor: '#fff',
     '& a': {
-      color: '#ffffff',
+      color: '#000',
       marginLeft: 1,
     },
   },
@@ -33,7 +36,7 @@ const classes = {
     fontSize: '1.5rem',
   },
   navbarButton: {
-    color: '#ffffff',
+    color: '#000',
     textTransform: 'initial',
   },
   fullWidth: {
@@ -52,7 +55,7 @@ const classes = {
 
   searchForm: {
     border: '1px solid #ffffff',
-    backgroundColor: '#ffffff',
+    backgroundColor: '#F7F7F7',
     borderRadius: 1,
   },
   searchInput: {
@@ -63,7 +66,7 @@ const classes = {
     },
   },
   searchButton: {
-    backgroundColor: '#f8c040',
+    backgroundColor: '#324D67',
     padding: 1,
     borderRadius: '0 5px 5px 0',
     '& span': {
@@ -81,6 +84,7 @@ const classes = {
     backgroundColor: "#324D67",
     padding: '15px',
     color: "#fff",
+    overflowX: 'auto',
   },
   productItemButton: {
     //backgroundColor: "#324D67",

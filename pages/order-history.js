@@ -64,7 +64,7 @@ function OrderHistoryScreen() {
   return (
     <Layout title="Order History">
       <Typography component="h1" variant="h1">
-        Order History
+        Historique de commandes
       </Typography>
       {loading ? (
         <CircularProgress />
@@ -78,7 +78,7 @@ function OrderHistoryScreen() {
                 <TableCell>ID</TableCell>
                 <TableCell>DATE</TableCell>
                 <TableCell>TOTAL</TableCell>
-                <TableCell>PAID</TableCell>
+                <TableCell>PAYÉ</TableCell>
                 <TableCell>ACTION</TableCell>
               </TableRow>
             </TableHead>
@@ -89,11 +89,11 @@ function OrderHistoryScreen() {
                   <TableCell>{order.createdAt}</TableCell>
                   <TableCell>${order.totalPrice}</TableCell>
                   <TableCell>
-                    {order.isPaid ? `paid at ${order.paidAt}` : 'not paid'}
+                    {order.isPaid ? `payé le ${order.paidAt}` : 'impayé'}
                   </TableCell>
                   <TableCell>
                     <NextLink href={`/order/${order._id}`} passHref>
-                      <Button variant="contained">Details</Button>
+                      <Button variant="contained">Détails</Button>
                     </NextLink>
                   </TableCell>
                 </TableRow>

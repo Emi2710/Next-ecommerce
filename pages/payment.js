@@ -49,7 +49,7 @@ export default function PaymentScreen() {
       <CheckoutWizard activeStep={2}></CheckoutWizard>
       <Form onSubmit={submitHandler}>
         <Typography component="h1" variant="h1">
-          Payment Method
+          Méthode de paiement
         </Typography>
         <List>
           <ListItem>
@@ -80,7 +80,7 @@ export default function PaymentScreen() {
           </ListItem>
           <ListItem>
             <Button fullWidth type="submit" variant="contained" color="primary">
-              Continue
+              Continuer
             </Button>
           </ListItem>
           <ListItem>
@@ -91,7 +91,7 @@ export default function PaymentScreen() {
               color="secondary"
               onClick={() => router.push('/shipping')}
             >
-              Back
+              Retour
             </Button>
           </ListItem>
         </List>

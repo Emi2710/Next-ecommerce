@@ -57,7 +57,7 @@ function ProfileScreen() {
   return (
     <Layout title="Profile">
       <Typography component="h1" variant="h1">
-        Profile
+        Profil
       </Typography>
       <Form onSubmit={handleSubmit(submitHandler)}>
         <List>
@@ -81,8 +81,8 @@ function ProfileScreen() {
                   helperText={
                     errors.name
                       ? errors.name.type === 'minLength'
-                        ? 'Name length is more than 1'
-                        : 'Name is required'
+                        ? 'Format du nom invalide'
+                        : 'Saisie du nom obligatoire'
                       : ''
                   }
                   {...field}
@@ -110,8 +110,8 @@ function ProfileScreen() {
                   helperText={
                     errors.email
                       ? errors.email.type === 'pattern'
-                        ? 'Email is not valid'
-                        : 'Email is required'
+                        ? 'Email invalide'
+                        : 'Email obligatoire'
                       : ''
                   }
                   {...field}
@@ -128,18 +128,18 @@ function ProfileScreen() {
                 validate: (value) =>
                   value === '' ||
                   value.length > 5 ||
-                  'Password length is more than 5',
+                  'Le mot de passe doit avoir plus de 5 caractères',
               }}
               render={({ field }) => (
                 <TextField
                   variant="outlined"
                   fullWidth
                   id="password"
-                  label="password"
+                  label="Mot de passe"
                   inputProps={{ type: 'password' }}
                   error={Boolean(errors.password)}
                   helperText={
-                    errors.password ? 'Password length is more than 5' : ''
+                    errors.password ? 'Le mot de passe doit avoir plus de 5 caractères' : ''
                   }
                   {...field}
                 ></TextField>
@@ -155,19 +155,19 @@ function ProfileScreen() {
                 validate: (value) =>
                   value === '' ||
                   value.length > 5 ||
-                  'confirmPassword length is more than 5',
+                  'La confirmation du mot de passe doit avoir plus de 5 caractères',
               }}
               render={({ field }) => (
                 <TextField
                   variant="outlined"
                   fullWidth
                   id="confirmPassword"
-                  label="Confirm Password"
+                  label="Confirmer le mot de passe"
                   inputProps={{ type: 'password' }}
                   error={Boolean(errors.confirmPassword)}
                   helperText={
                     errors.confirmPassword
-                      ? 'Confirm Password length is more than 5'
+                      ? 'La confirmation du mot de passe doit avoir plus de 5 caractères'
                       : ''
                   }
                   {...field}
@@ -177,7 +177,7 @@ function ProfileScreen() {
           </ListItem>
           <ListItem>
             <Button variant="contained" type="submit" fullWidth color="primary">
-              Update
+              Modifier
             </Button>
           </ListItem>
         </List>

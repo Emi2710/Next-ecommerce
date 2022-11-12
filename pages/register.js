@@ -40,7 +40,7 @@ export default function RegisterScreen() {
 
   const submitHandler = async ({ name, email, password, confirmPassword }) => {
     if (password !== confirmPassword) {
-      enqueueSnackbar("Passwords don't match", { variant: 'error' });
+      enqueueSnackbar("Les mots de passes fournis sont différents", { variant: 'error' });
       return;
     }
     try {
@@ -60,7 +60,7 @@ export default function RegisterScreen() {
     <Layout title="Register">
       <Form onSubmit={handleSubmit(submitHandler)}>
         <Typography component="h1" variant="h1">
-          Register
+          Inscription
         </Typography>
         <List>
           <ListItem>
@@ -77,14 +77,14 @@ export default function RegisterScreen() {
                   variant="outlined"
                   fullWidth
                   id="name"
-                  label="Name"
+                  label="Nom"
                   inputProps={{ type: 'name' }}
                   error={Boolean(errors.name)}
                   helperText={
                     errors.name
                       ? errors.name.type === 'minLength'
-                        ? 'Name length is more than 1'
-                        : 'Name is required'
+                        ? 'Nom invalide'
+                        : 'Nom obligatoire'
                       : ''
                   }
                   {...field}
@@ -113,8 +113,8 @@ export default function RegisterScreen() {
                   helperText={
                     errors.email
                       ? errors.email.type === 'pattern'
-                        ? 'Email is not valid'
-                        : 'Email is required'
+                        ? 'Email invalide'
+                        : 'Email obligatoire'
                       : ''
                   }
                   {...field}
@@ -136,14 +136,14 @@ export default function RegisterScreen() {
                   variant="outlined"
                   fullWidth
                   id="password"
-                  label="Password"
+                  label="Mot de passe"
                   inputProps={{ type: 'password' }}
                   error={Boolean(errors.password)}
                   helperText={
                     errors.password
                       ? errors.password.type === 'minLength'
-                        ? 'Password length is more than 5'
-                        : 'Password is required'
+                        ? 'Le mot de passe doit avoir plus de 5 caractères'
+                        : 'Mot de passe obligatoire'
                       : ''
                   }
                   {...field}
@@ -165,14 +165,14 @@ export default function RegisterScreen() {
                   variant="outlined"
                   fullWidth
                   id="confirmPassword"
-                  label="Confirm Password"
+                  label="Confirmer le mot de passe"
                   inputProps={{ type: 'password' }}
                   error={Boolean(errors.confirmPassword)}
                   helperText={
                     errors.confirmPassword
                       ? errors.confirmPassword.type === 'minLength'
-                        ? 'Confirm Password length is more than 5'
-                        : 'Confirm Password is required'
+                        ? 'La confirmation du mot de passe doit avoir plus de 5 caractères'
+                        : 'La confirmation du mot de passe est obligatoire'
                       : ''
                   }
                   {...field}
@@ -182,13 +182,13 @@ export default function RegisterScreen() {
           </ListItem>
           <ListItem>
             <Button variant="contained" type="submit" fullWidth color="primary">
-              Register
+              S'inscrire
             </Button>
           </ListItem>
           <ListItem>
-            Already have an account?{' '}
+            Vous avez déjà un compte?{' '}
             <NextLink href={`/login?redirect=${redirect || '/'}`} passHref>
-              <Link>Login</Link>
+              <Link>Se connecter</Link>
             </NextLink>
           </ListItem>
         </List>
