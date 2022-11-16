@@ -26,3 +26,28 @@ a {
 button.add-to-cart-hover:hover {
     background-color: #182E43;
 }
+
+.product-detail-image {
+    border-radius: 15px;
+    background-color: #ebebeb;
+
+    width: 400px;
+    height: 400px;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+
+
+.small-images-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.small-image {
+    border-radius: 8px;
+    background-color: #ebebeb;
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+}

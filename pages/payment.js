@@ -70,11 +70,7 @@ export default function PaymentScreen() {
                   value="Stripe"
                   control={<Radio />}
                 ></FormControlLabel>
-                <FormControlLabel
-                  label="Cash"
-                  value="Cash"
-                  control={<Radio />}
-                ></FormControlLabel>
+                
               </RadioGroup>
             </FormControl>
           </ListItem>

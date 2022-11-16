@@ -82,7 +82,6 @@ const classes = {
     display: "flex",
     justifyContent: "space-around",
     backgroundColor: "#324D67",
-    padding: '15px',
     color: "#fff",
     overflowX: 'auto',
   },

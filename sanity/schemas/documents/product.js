@@ -14,17 +14,24 @@ export default {
       type: 'number',
     },
     {
-      name: 'image',
-      title: 'Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
+      name: "currency",
+      title: "Currency",
+      description: "Keep this 'usd' for the purposes of this tutorial",
+      type: "string",
     },
     {
-      name: 'description',
-      title: 'Description',
-      type: 'string',
+      name: 'image',
+      title: 'Images',
+      type: 'array',
+      of: [{type: 'image'}],
+      options: {
+         hotspot: true,  
+      }
+    },
+    {
+      name: 'contentBody',
+      title: 'Content',
+      type: 'blockContent'
     },
     {
       name: 'slug',
@@ -62,4 +69,7 @@ export default {
       type: 'number',
     },
   ],
+  initialValue: {
+    currency: "eur",
+  },
 };

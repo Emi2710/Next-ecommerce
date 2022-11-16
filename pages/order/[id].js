@@ -1,6 +1,7 @@
 import {
   Alert,
   Box,
+  Button,
   Card,
   CircularProgress,
   Grid,
@@ -27,6 +28,10 @@ import { useRouter } from 'next/router';
 import { getError } from '../../utils/error';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
+import getStripe from '../../lib/getStripe';
+import toast from 'react-hot-toast';
+
+
 
 function reducer(state, action) {
   switch (action.type) {
@@ -73,7 +78,7 @@ function OrderScreen({ params }) {
 
   const router = useRouter();
   const { state } = useContext(Store);
-  const { userInfo } = state;
+  const { userInfo, cartItems } = state;
 
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
 
@@ -141,7 +146,7 @@ function OrderScreen({ params }) {
           }
         );
         dispatch({ type: 'PAY_SUCCESS', payload: data });
-        enqueueSnackbar('La commande est payé', { variant: 'success' });
+        enqueueSnackbar('La commande est payée', { variant: 'success' });
       } catch (err) {
         dispatch({ type: 'PAY_FAIL', payload: getError(err) });
         enqueueSnackbar(getError(err), { variant: 'error' });
@@ -150,6 +155,32 @@ function OrderScreen({ params }) {
   }
   function onError(err) {
     enqueueSnackbar(getError(err), { variant: 'error' });
+  }
+
+  const handleCheckout = async () => {
+
+    console.log(orderItems)
+
+    const stripe = await getStripe();
+
+    const response = await fetch('/api/keys/stripe', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${userInfo.token}`,
+      },
+      body: JSON.stringify(orderItems),
+    });
+
+    
+
+    if(response.statusCode === 500) return;
+    
+    const data = await response.json();
+
+    toast.loading('Redirecting...');
+
+    stripe.redirectToCheckout({ sessionId: data.id });
   }
 
   return (
@@ -303,16 +334,23 @@ function OrderScreen({ params }) {
                 </ListItem>
                 {!isPaid && (
                   <ListItem>
+                    
                     {isPending ? (
                       <CircularProgress />
                     ) : (
-                      <Box sx={classes.fullWidth}>
-                        <PayPalButtons
-                          createOrder={createOrder}
-                          onApprove={onApprove}
-                          onError={onError}
-                        ></PayPalButtons>
-                      </Box>
+                      <>
+                     
+                        <Box sx={classes.fullWidth}>
+                            <PayPalButtons
+                              createOrder={createOrder}
+                              onApprove={onApprove}
+                              onError={onError}
+                            ></PayPalButtons>
+                        </Box>
+                     
+                        
+                      </>
+                      
                     )}
                   </ListItem>
                 )}

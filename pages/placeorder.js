@@ -28,6 +28,10 @@ import axios from 'axios';
 import jsCookie from 'js-cookie';
 import dynamic from 'next/dynamic';
 
+
+
+
+
 function PlaceOrderScreen() {
   const { enqueueSnackbar } = useSnackbar();
   const [loading, setLoading] = useState(false);
@@ -52,6 +56,9 @@ function PlaceOrderScreen() {
       router.push('/cart');
     }
   }, [cartItems, paymentMethod, router]);
+
+  
+
 
   const placeOrderHandler = async () => {
     try {
@@ -89,7 +96,7 @@ function PlaceOrderScreen() {
     <Layout title="Place Order">
       <CheckoutWizard activeStep={3}></CheckoutWizard>
       <Typography component="h1" variant="h1">
-        Commander
+        Votre commande
       </Typography>
 
       <Grid container spacing={1}>
@@ -242,6 +249,7 @@ function PlaceOrderScreen() {
                 </Grid>
               </ListItem>
               <ListItem>
+                
                 <Button
                   onClick={placeOrderHandler}
                   variant="contained"
@@ -251,6 +259,8 @@ function PlaceOrderScreen() {
                 >
                   Commander
                 </Button>
+                
+                
               </ListItem>
               {loading && (
                 <ListItem>

@@ -51,7 +51,7 @@ export default function Home() {
         countInStock: product.countInStock,
         slug: product.slug.current,
         price: product.price,
-        image: urlForThumbnail(product.image),
+        image: urlForThumbnail(product.image[0]),
         quantity,
       },
     });
@@ -68,9 +68,9 @@ export default function Home() {
       ) : error ? (
         <Alert variant="danger">{error}</Alert>
       ) : (
-        <Grid container spacing={3}>
+        <Grid container spacing={-2}>
           {products.map((product) => (
-            <Grid item md={4} key={product.slug}>
+            <Grid item md={3} key={product.slug}>
               <ProductItem
                 product={product}
                 addToCartHandler={addToCartHandler}

@@ -22,8 +22,13 @@ import { urlFor, urlForThumbnail } from '../../utils/image';
 import { Store } from '../../utils/Store';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import {PortableText as BasePortableText} from '@portabletext/react';
+
 
 export default function ProductScreen(props) {
+
+  const [index, setIndex] = useState(0);
+
   const router = useRouter();
   const { slug } = props;
   const {
@@ -69,8 +74,9 @@ export default function ProductScreen(props) {
         countInStock: product.countInStock,
         slug: product.slug.current,
         price: product.price,
-        image: urlForThumbnail(product.image),
+        image: urlForThumbnail(product.image[0]),
         quantity,
+        currency: product.currency
       },
     });
     enqueueSnackbar(`${product.name} ajouté au panier`, {
@@ -95,13 +101,21 @@ export default function ProductScreen(props) {
           </Box>
           <Grid container spacing={1}>
             <Grid item md={6} xs={12}>
-              <Image
-                src={urlFor(product.image)}
-                alt={product.name}
-                layout="responsive"
-                width={640}
-                height={640}
-              />
+              <div className='image-container'>
+                    <img src={urlFor(product.image && product.image[index])} alt={product.name} className='product-detail-image' />
+              </div>
+              {<div className='small-images-container'>
+                    {product.image?.map((item, i) => (
+                        <img
+                            key={i} 
+                            src={urlFor(item)}
+                            alt={product.name}
+                            className={i === index ? 'small-image selected-image' : 'small-image'}
+                            onMouseEnter={() => setIndex(i)}
+                        />
+                    ))}
+                    </div>}
+              
             </Grid>
             <Grid item md={3} xs={12}>
               <List>
@@ -119,7 +133,7 @@ export default function ProductScreen(props) {
                   </Typography>
                 </ListItem>
                 <ListItem>
-                  <Typography>Description: {product.description}</Typography>
+                  <Typography>Description: <BasePortableText value={product.contentBody} /></Typography>
                 </ListItem>
               </List>
             </Grid>
@@ -151,13 +165,16 @@ export default function ProductScreen(props) {
                     </Grid>
                   </ListItem>
                   <ListItem>
-                    <Button
-                      onClick={addToCartHandler}
-                      fullWidth
-                      variant="contained"
-                    >
-                      Ajouter au panier
-                    </Button>
+                    {product.countInStock > 0 ? 
+                      <Button
+                        onClick={addToCartHandler}
+                        fullWidth
+                        variant="contained"
+                      >
+                        Ajouter au panier
+                      </Button> : 'En rupture de stock'
+                    } 
+                    
                   </ListItem>
                 </List>
               </Card>

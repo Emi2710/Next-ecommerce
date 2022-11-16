@@ -38,7 +38,7 @@ import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import { getError } from '../utils/error';
 
-export default function Layout({ title, description, children }) {
+export default function Layout({ title, description, children, categoriesData }) {
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const { cart, userInfo } = state;
@@ -141,59 +141,14 @@ export default function Layout({ title, description, children }) {
         <AppBar position="static" sx={classes.appbar} elevation={0}>
           <Toolbar sx={classes.toolbar}>
             <Box display="flex" alignItems="center">
-              <IconButton
-                edge="start"
-                aria-label="open drawer"
-                onClick={sidebarOpenHandler}
-                sx={classes.menuButton}
-              >
-                <MenuIcon sx={classes.navbarButton} />
-              </IconButton>
+              
               <NextLink href="/" passHref>
                 <Link>
                   <Image src={logo} alt="Logo e-scoot" width='75px' />
                 </Link>
               </NextLink>
             </Box>
-            <Drawer
-              anchor="left"
-              open={sidbarVisible}
-              onClose={sidebarCloseHandler}
-            >
-              <List>
-                <ListItem>
-                  <Box
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="space-between"
-                  >
-                    <Typography>Shopping by category</Typography>
-                    <IconButton
-                      aria-label="close"
-                      onClick={sidebarCloseHandler}
-                    >
-                      <CancelIcon />
-                    </IconButton>
-                  </Box>
-                </ListItem>
-                <Divider light />
-                {categories.map((category) => (
-                  <NextLink
-                    key={category}
-                    href={`/search?category=${category}`}
-                    passHref
-                  >
-                    <ListItem
-                      button
-                      component="a"
-                      onClick={sidebarCloseHandler}
-                    >
-                      <ListItemText primary={category}></ListItemText>
-                    </ListItem>
-                  </NextLink>
-                ))}
-              </List>
-            </Drawer>
+            
             <Box sx={isDesktop ? classes.visible : classes.hidden}>
               <form onSubmit={submitHandler}>
                 <Box sx={classes.searchForm}>
@@ -265,7 +220,7 @@ export default function Layout({ title, description, children }) {
                         Panier
                       </Badge>
                     ) : (
-                      'Cart'
+                      'Panier'
                     )}
                   </Typography>
                 </Link>
@@ -274,12 +229,23 @@ export default function Layout({ title, description, children }) {
           </Toolbar>
         </AppBar>
         <Box sx={classes.categories} className="menu-categories">
-            <Typography>Roues</Typography>
-            <Typography>Electronique</Typography>
-            <Typography>Trotinettes</Typography>
-            <Typography>Accessoires</Typography>
-            <Typography>Voitures</Typography>
-            <Typography>Camions</Typography>
+          
+              {categories.map((category) => (
+                  <NextLink
+                    key={category}
+                    href={`/search?category=${category}`}
+                    passHref
+                  >
+                    <ListItem
+                      button
+                      component="a"
+                    >
+                      <ListItemText primary={category} sx={{display: "flex", justifyContent: "space-around",}}></ListItemText>
+                    </ListItem>
+                  </NextLink>
+                ))}
+            
+            
             
         </Box>
         <Container component="main" sx={classes.main}>
@@ -293,4 +259,14 @@ export default function Layout({ title, description, children }) {
       </ThemeProvider>
     </>
   );
+}
+
+export const getServerSideProps = async () => {
+  const query = '*[_type == "categories"]';
+  const categoriesData = await client.fetch(query);
+
+  return {
+    props: { categoriesData }
+  }
+
 }

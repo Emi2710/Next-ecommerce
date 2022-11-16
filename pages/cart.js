@@ -62,6 +62,12 @@ function CartScreen() {
   const removeItemHandler = (item) => {
     dispatch({ type: 'CART_REMOVE_ITEM', payload: item });
   };
+
+  const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100; // 123.456 => 123.46
+  const itemsPrice = round2(
+    cartItems.reduce((a, c) => a + c.price * c.quantity, 0)
+  );
+
   return (
     <Layout title="Shopping Cart">
       <Typography component="h1" variant="h1">
@@ -150,8 +156,9 @@ function CartScreen() {
                 <ListItem>
                   <Typography variant="h2">
                     Total ({cartItems.reduce((a, c) => a + c.quantity, 0)}{' '}
-                    produits) : €{' '}
-                    {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
+                    produits) : {' '}
+                    {itemsPrice}€
+                    
                   </Typography>
                 </ListItem>
                 <ListItem>
