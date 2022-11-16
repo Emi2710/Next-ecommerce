@@ -23,6 +23,8 @@ import { Store } from '../../utils/Store';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import {PortableText as BasePortableText} from '@portabletext/react';
+import Comments from '../../components/Comments';
+import CommentsForm from '../../components/CommentsForm';
 
 
 export default function ProductScreen(props) {
@@ -84,6 +86,12 @@ export default function ProductScreen(props) {
     });
     router.push('/cart');
   };
+
+
+
+  
+    
+
   return (
     <Layout title={product?.title}>
       {loading ? (
@@ -180,7 +188,16 @@ export default function ProductScreen(props) {
               </Card>
             </Grid>
           </Grid>
+          <Box>
+
+            
+            <Comments comments={product.comments}/>
+            <CommentsForm _id={product._id} />
+
+            
+          </Box>  
         </Box>
+        
       )}
     </Layout>
   );

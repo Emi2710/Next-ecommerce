@@ -25,7 +25,7 @@ export default {
         type: 'text',
       },
       {
-        name: 'post',
+        name: 'product',
         type: 'reference',
         to: [{type: "product"}],
       },
