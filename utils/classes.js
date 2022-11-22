@@ -93,7 +93,7 @@ const classes = {
   productName: {
     color: "#324D67",
     fontSize: '18px',
-    fontWeight: '800',
+    fontWeight: '500',
     overflowWrap: 'break-word',
     maxWidth: '200px'
   }

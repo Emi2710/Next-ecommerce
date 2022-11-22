@@ -25,7 +25,7 @@ import { useRouter } from 'next/router';
 import {PortableText as BasePortableText} from '@portabletext/react';
 import Comments from '../../components/Comments';
 import CommentsForm from '../../components/CommentsForm';
-
+import { getProductAndMoreProducts, getAllProductsWithSlug } from '../../lib/api';
 
 export default function ProductScreen(props) {
 
@@ -43,8 +43,15 @@ export default function ProductScreen(props) {
     loading: true,
     error: '',
   });
+  const [productComments, setProductComments] = useState({
+    comments: []
+  });
+
   const { product, loading, error } = state;
+  const { comments } = productComments;
+
   useEffect(() => {
+    
     const fetchData = async () => {
       try {
         const product = await client.fetch(
@@ -52,14 +59,23 @@ export default function ProductScreen(props) {
             *[_type == "product" && slug.current == $slug][0]`,
           { slug }
         );
+        const comments = await client.fetch(
+          `
+            *[_type == "comment" && product._ref == $productId && approved == true]`, {
+              productId: product._id,
+            }
+        );
         setState({ ...state, product, loading: false });
+        setProductComments({comments});
       } catch (err) {
         setState({ ...state, error: err.message, loading: false });
       }
     };
+    
     fetchData();
   }, []);
 
+  
   const addToCartHandler = async () => {
     const existItem = cart.cartItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
@@ -87,6 +103,24 @@ export default function ProductScreen(props) {
     router.push('/cart');
   };
 
+  /*useEffect(() => {
+    const fetchComments = async () => {
+      try {
+        const comments = await client.fetch(
+          `
+            *[_type == "comment" && product._ref == $productId && approved == true]`, {
+              productId: product._id,
+            }
+        );
+        setProductComments({comments});
+      } catch (err) {
+        //setProductComments({ loading: false, error: err.message });
+        console.error(err)
+      }
+    };
+    fetchComments();
+  }, []);*/
+
 
 
   
@@ -94,6 +128,7 @@ export default function ProductScreen(props) {
 
   return (
     <Layout title={product?.title}>
+
       {loading ? (
         <CircularProgress />
       ) : error ? (
@@ -109,7 +144,7 @@ export default function ProductScreen(props) {
           </Box>
           <Grid container spacing={1}>
             <Grid item md={6} xs={12}>
-              <div className='image-container'>
+             <div className='image-container'>
                     <img src={urlFor(product.image && product.image[index])} alt={product.name} className='product-detail-image' />
               </div>
               {<div className='small-images-container'>
@@ -122,7 +157,8 @@ export default function ProductScreen(props) {
                             onMouseEnter={() => setIndex(i)}
                         />
                     ))}
-                    </div>}
+                    </div>} 
+                    
               
             </Grid>
             <Grid item md={3} xs={12}>
@@ -141,7 +177,7 @@ export default function ProductScreen(props) {
                   </Typography>
                 </ListItem>
                 <ListItem>
-                  <Typography>Description: <BasePortableText value={product.contentBody} /></Typography>
+                  <Typography>Description:<BasePortableText value={product.contentBody} /></Typography> 
                 </ListItem>
               </List>
             </Grid>
@@ -189,18 +225,21 @@ export default function ProductScreen(props) {
             </Grid>
           </Grid>
           <Box>
+            
 
             
-            <Comments comments={product.comments}/>
             <CommentsForm _id={product._id} />
-
+            <Comments comments={comments} />
             
           </Box>  
         </Box>
         
       )}
     </Layout>
+
+    
   );
+
 }
 
 export function getServerSideProps(context) {
@@ -208,3 +247,33 @@ export function getServerSideProps(context) {
     props: { slug: context.params.slug },
   };
 }
+
+export function getComments() {
+    
+
+}
+
+/*export async function getStaticProps({ params, preview = false }) {
+  const data = await getProductAndMoreProducts(params.slug, preview)
+  return {
+    props: {
+      preview,
+      product: data?.product || null,
+      moreProducts: data?.moreProducts || null,
+    },
+    revalidate: 1,
+  }
+}
+
+export async function getStaticPaths() {
+  const allProducts = await getAllProductsWithSlug()
+  return {
+    paths:
+      allProducts?.map((product) => ({
+        params: {
+          slug: product.slug,
+        },
+      })) || [],
+    fallback: true,
+  }
+}*/

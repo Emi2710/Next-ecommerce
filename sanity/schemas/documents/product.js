@@ -39,7 +39,14 @@ export default {
       type: 'slug',
       options: {
         source: 'name',
-        maxLength: 96,
+        slugify: (input) =>
+          input
+            .toLowerCase()
+            //Remove spaces
+            .replace(/\s+/g, "-")
+            //Remove special characters
+            .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, ""),
+        validation: (Rule) => Rule.required(),
       },
     },
     {
@@ -48,9 +55,18 @@ export default {
       type: 'string',
     },
     {
+      title: 'Catégories',
       name: 'category',
-      title: 'Category',
       type: 'string',
+      options: {
+        list: [
+          {title: 'Roues', value: 'Roues'},
+          {title: 'Pièces de rechange', value: 'Pièces de rechange'},
+          {title: 'Accessoires', value: 'Accessoires'},
+          {title: 'Consommables', value: 'Consommables'},
+        ], 
+        layout: 'radio' // <-- defaults to 'dropdown'
+              }
     },
     {
       name: 'rating',
@@ -68,8 +84,10 @@ export default {
       title: 'CountInStock',
       type: 'number',
     },
+    
   ],
   initialValue: {
     currency: "eur",
   },
+
 };
