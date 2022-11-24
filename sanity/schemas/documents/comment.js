@@ -20,6 +20,11 @@ export default {
         type: 'string',
       },
       {
+        name: 'rating',
+        title: 'Rating',
+        type: 'number',
+      },
+      {
         name: 'comment',
         title: 'Comment',
         type: 'text',

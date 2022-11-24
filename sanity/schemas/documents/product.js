@@ -69,6 +69,42 @@ export default {
               }
     },
     {
+      title: 'Roues: sous catégories',
+      name: 'rouesSubCategory',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Appareil photo', value: 'Appareil Photo'},
+          {title: 'Pneus', value: 'Pneus'},
+          {title: 'Roues pleines', value: 'Roues pleines'},
+          
+        ], 
+              },
+
+    },
+    {
+      title: 'Pièces de rechange: sous catégories',
+      name: 'piecesSubCategory',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Batteries & chargeurs', value: 'Batteries & chargeurs'},
+          {title: 'Electronique', value: 'Electronique'},
+          {title: 'Moteur', value: 'Moteur'},
+          {title: 'Adresse', value: 'Adresse'},
+          {title: 'Moulure', value: 'Moulure'},
+          {title: 'Matériels', value: 'Matériels'},
+          {title: 'Freins', value: 'Freins'},
+          {title: 'Châssis', value: 'Châssis'},
+          {title: 'Personnalisation', value: 'Personnalisation'},
+          {title: 'Eclair', value: 'Eclair'},
+          {title: 'Suspensions', value: 'Suspensions'},
+          
+        ], 
+              },
+
+    },
+    {
       name: 'rating',
       title: 'Rating',
       type: 'number',

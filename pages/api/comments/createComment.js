@@ -8,7 +8,7 @@ const config = {
 const client = sanityClient(config)
 
 export default async function createComment(req, res) {
-  const { _id, name, email, comment } = JSON.parse(req.body)
+  const { _id, name, email, rating, comment } = JSON.parse(req.body)
   try {
     await client.create({
       _type: 'comment',
@@ -18,6 +18,7 @@ export default async function createComment(req, res) {
       },
       name,
       email,
+      rating,
       comment,
     })
   } catch (err) {

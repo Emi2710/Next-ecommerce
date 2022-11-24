@@ -75,6 +75,23 @@ export default function ProductScreen(props) {
     fetchData();
   }, []);
 
+  //const reviewValue = (comments.rating + comments.rating) / comments.length;
+  //console.log(comments.map((comment) => (<>{comment.rating})</>)))
+
+  /*const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100; // 123.456 => 123.46
+  const itemsPrice = round2(
+    cartItems.reduce((a, c) => a + c.price * c.quantity, 0)
+  );*/
+  /*const totalReviews = 
+    comments.reduce((a, c) => a + a / c.length, 0);
+
+  function numAverage(a) {
+    var b = comments.length
+    return a/b;
+  }*/
+
+  //console.log(comments.rating)
+
   
   const addToCartHandler = async () => {
     const existItem = cart.cartItems.find((x) => x._id === product._id);
@@ -171,9 +188,17 @@ export default function ProductScreen(props) {
                 <ListItem>Catégorie: {product.category}</ListItem>
                 <ListItem>Marque: {product.brand}</ListItem>
                 <ListItem>
-                  <Rating value={product.rating} readOnly></Rating>
+                  {/*comments.map((comment) => (
+                    <>
+                      <Rating readOnly></Rating>
+                      {console.log(comment.rating)}
+
+                    </>
+                  ))*/}
+                  <Rating value={product.rating} readOnly />
+                  
                   <Typography sx={classes.smallText}>
-                    ({product.numReviews} avis)
+                    ({comments.length} avis)
                   </Typography>
                 </ListItem>
                 <ListItem>
@@ -224,13 +249,14 @@ export default function ProductScreen(props) {
               </Card>
             </Grid>
           </Grid>
-          <Box>
+          <Box sx={{paddingTop: '100px'}}>
             
 
             
-            <CommentsForm _id={product._id} />
-            <Comments comments={comments} />
             
+            <Comments comments={comments} />
+            <CommentsForm _id={product._id} />
+
           </Box>  
         </Box>
         

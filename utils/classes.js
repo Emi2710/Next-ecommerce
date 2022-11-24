@@ -96,6 +96,13 @@ const classes = {
     fontWeight: '500',
     overflowWrap: 'break-word',
     maxWidth: '200px'
+  },
+  subCategoryCard: {
+    background: "#f5f5f5",
+    margin: '15px 5px',
+    padding: '12px',
+    cursor: 'pointer',
+    borderRadius: '8px'
   }
 };
 

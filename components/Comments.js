@@ -1,23 +1,30 @@
 import Date from './date'
+import { Rating } from '@mui/material';
+import {
+  Button,
+  TextField,
+  Typography,
+} from '@mui/material';
 
 export default function Comments({ comments = [] }) {
 
   
   return (
     <>
-      <h2 className="mt-10 mb-4 text-4xl leading-tight lg:text-6xl">
-        Avis des clients:
-      </h2>
-      <ul>
+      <Typography component="h4" variant="h4" sx={{marginBottom: '40px'}}>
+        Avis clients
+      </Typography>
+      <ul className='list-style-none'>
         {comments?.map((comment) => (
-          <li key={comment._id} className="mb-5">
-            <hr className="mb-5" />
-            <h4 className="mb-2 leading-tight">
-              <a href={`mailto:${comment.email}`}>{comment.name}</a> (
+          <li key={comment._id}>
+            <Typography sx={{fontWeight: 'bold'}}>
+              {comment.name} (
               <Date dateString={comment._createdAt} />)
-            </h4>
+            </Typography>
+            
+            <Rating value={comment.rating} readOnly />
             <p>{comment.comment}</p>
-            <hr className="mt-5 mb-5" />
+            <hr/>
           </li>
         ))}
       </ul>

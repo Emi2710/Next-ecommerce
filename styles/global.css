@@ -64,6 +64,24 @@ button.add-to-cart-hover:hover {
     font-size: 1rem;
     line-height: 1.4375em;
     padding: 16.5px 14px;
-    margin-bottom: 12px;
+    margin-top: 12px;
     border-radius: 6px;
+}
+
+.review-form-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+}
+
+@media screen and (min-width: 220px) {
+    .review-form-wrapper {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 680px) {
+    .review-form-wrapper {
+        width: 50%;
+    }
 }

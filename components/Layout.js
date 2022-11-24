@@ -97,21 +97,25 @@ export default function Layout({ title, description, children, categoriesData })
     router.push('/');
   };
 
-  const [sidbarVisible, setSidebarVisible] = useState(false);
+  /*const [sidbarVisible, setSidebarVisible] = useState(false);
   const sidebarOpenHandler = () => {
     setSidebarVisible(true);
   };
   const sidebarCloseHandler = () => {
     setSidebarVisible(false);
-  };
+  };*/
 
   const { enqueueSnackbar } = useSnackbar();
   const [categories, setCategories] = useState([]);
+  const [brands, setBrands] = useState([]);
+
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const { data } = await axios.get(`/api/products/categories`);
+        //const { brandsData } = await axios.get(`/api/products/brands`);
         setCategories(data);
+        //setBrands(brandsData);
       } catch (err) {
         enqueueSnackbar(getError(err), { variant: 'error' });
       }
@@ -244,6 +248,7 @@ export default function Layout({ title, description, children, categoriesData })
                     </ListItem>
                   </NextLink>
                 ))}
+                
             
             
             
@@ -265,8 +270,11 @@ export const getServerSideProps = async () => {
   const query = '*[_type == "categories"]';
   const categoriesData = await client.fetch(query);
 
+  const brandsQuery = '*[_type == "brand"]';
+  const brandsData = await client.fetch(brandsQuery);
+
   return {
-    props: { categoriesData }
+    props: { categoriesData, brandsData }
   }
 
 }

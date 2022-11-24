@@ -1,10 +1,23 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { Rating } from '@mui/material';
+import {
+  Button,
+  TextField,
+  Typography,
+} from '@mui/material';
 
 export default function Form({ _id }) {
   const [formData, setFormData] = useState()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [hasSubmitted, setHasSubmitted] = useState(false)
+  const [rating, setRating] = useState(null);
+  
+  /*const updateRating = (newRating) => {
+    setRating(newRating);
+    console.log(rating);
+}*/
+
   const {
     register,
     handleSubmit,
@@ -29,19 +42,14 @@ export default function Form({ _id }) {
   }
 
   if (isSubmitting) {
-    return <h3>Submitting comment…</h3>
+    return <h3>En cours de chargement…</h3>
   }
   if (hasSubmitted) {
     return (
       <>
-        <h3>Thanks for your comment!</h3>
-        <ul>
-          <li>
-            Name: {formData.name} <br />
-            Email: {formData.email} <br />
-            Comment: {formData.comment}
-          </li>
-        </ul>
+      <Typography component="h3" variant="h3">
+        Merci pour votre commentaire
+      </Typography>
       </>
     )
   }
@@ -49,45 +57,55 @@ export default function Form({ _id }) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-full max-w-lg"
+      className="review-form-wrapper"
       disabled
+      
     >
+      <Typography component="h4" variant="h4">
+        Laisser un avis
+      </Typography>
       <input {...register('_id')} type="hidden" name="_id" value={_id} />
-      <label className="mb-5 block">
-        <span className="text-gray-700">Name</span>
-        <input
+      
+        <TextField
           name="name"
+          label="Nom"
           {...register('name', { required: true })}
-          className="form-input mt-1 block w-full rounded border py-2 px-3 shadow"
-          placeholder="John Appleseed"
+          placeholder="Nom prénom"
+          sx={{marginTop: '15px', }}
         />
-      </label>
-      <label className="mb-5 block">
-        <span className="text-gray-700">Email</span>
-        <input
+
+        <TextField
           name="email"
           type="email"
+          label="Email"
+          sx={{marginTop: '15px', }}
           {...register('email', { required: true })}
-          className="form-input mt-1 block w-full rounded border py-2 px-3 shadow"
-          placeholder="your@email.com"
+          placeholder="adresse@gmail.com"
         />
-      </label>
-      <label className="mb-5 block">
-        <span className="text-gray-700">Comment</span>
+     
+      
+      <TextField 
+        name="rating"
+        type="number"
+        label="Note sur 5"
+        max="5"
+        placeholder='5'
+        sx={{marginTop: '15px', }}
+        
+        {...register('rating', { required: true })} 
+      />
         <textarea
           {...register('comment', { required: true })}
           name="comment"
-          className="form-textarea mt-1 block w-full rounded  border py-2 px-3 shadow"
-          rows="8"
-          placeholder="Enter some long form content."
+          label="Votre message"
+          placeholder="Qu'avez pensé du produit ?"
+          className="review-textarea"
         ></textarea>
-      </label>
       {/* errors will return when field validation fails  */}
-      {errors.exampleRequired && <span>This field is required</span>}
-      <input
-        type="submit"
-        className="focus:shadow-outline rounded bg-purple-500 py-2 px-4 font-bold text-white shadow hover:bg-purple-400 focus:outline-none"
-      />
+      {errors.exampleRequired && <span>Ce champs est obligatoire</span>}
+      <Button variant="contained" type="submit" fullWidth color="secondary" sx={{marginTop: '15px', }}>
+              Envoyer
+      </Button>
     </form>
   )
 }

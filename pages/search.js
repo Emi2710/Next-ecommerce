@@ -21,6 +21,9 @@ import classes from '../utils/classes';
 import client from '../utils/client';
 import { urlForThumbnail } from '../utils/image';
 import { Store } from '../utils/Store';
+import brands from '../utils/brands';
+import pieces from '../utils/subCategories/pieces';
+import roues from '../utils/subCategories/roues';
 
 const prices = [
   {
@@ -43,6 +46,9 @@ export default function SearchScreen() {
   const router = useRouter();
   const {
     category = 'all',
+    brand = 'all',
+    rouesSubCategory = 'all',
+    piecesSubCategory = 'all',
     query = 'all',
     price = 'all',
     rating = 'all',
@@ -50,6 +56,9 @@ export default function SearchScreen() {
   } = router.query;
   const [state, setState] = useState({
     categories: [],
+    brands: [],
+    rouesSubCategory: [],
+    piecesSubCategory: [],
     products: [],
     error: '',
     loading: true,
@@ -57,6 +66,8 @@ export default function SearchScreen() {
 
   const { loading, products, error } = state;
   const [categories, setCategories] = useState([]);
+  //const [brands, setBrands] = useState([]);
+
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -68,11 +79,33 @@ export default function SearchScreen() {
     };
     fetchCategories();
 
+    /*const fetchBrands = async () => {
+      try {
+        //const { data } = await axios.get(`/api/products/categories`);
+        const { brandData } = await axios.get(`/api/products/brands`);
+        //setCategories(data);
+        setBrands(brandData);
+        console.log(brandData)
+      } catch (err) {
+        console.log(err.message);
+      }
+    };
+    fetchBrands();*/
+
     const fetchData = async () => {
       try {
         let gQuery = '*[_type == "product"';
         if (category !== 'all') {
           gQuery += ` && category match "${category}" `;
+        }
+        if (rouesSubCategory !== 'all') {
+          gQuery += ` && rouesSubCategory match "${rouesSubCategory}" `;
+        }
+        if (piecesSubCategory !== 'all') {
+          gQuery += ` && piecesSubCategory match "${piecesSubCategory}" `;
+        }
+        if (brand !== 'all') {
+          gQuery += ` && brand match "${brand}" `;
         }
         if (query !== 'all') {
           gQuery += ` && name match "${query}" `;
@@ -102,13 +135,16 @@ export default function SearchScreen() {
       }
     };
     fetchData();
-  }, [category, price, query, rating, sort]);
+  }, [category, brand, rouesSubCategory, piecesSubCategory, price, query, rating, sort]);
 
-  const filterSearch = ({ category, sort, searchQuery, price, rating }) => {
+  const filterSearch = ({ category, brand, rouesSubCategory, piecesSubCategory, sort, searchQuery, price, rating }) => {
     const path = router.pathname;
     const { query } = router;
     if (searchQuery) query.searchQuery = searchQuery;
     if (category) query.category = category;
+    if (rouesSubCategory) query.rouesSubCategory = rouesSubCategory;
+    if (piecesSubCategory) query.piecesSubCategory = piecesSubCategory;
+    if (brand) query.brand = brand;
     if (sort) query.sort = sort;
     if (price) query.price = price;
     if (rating) query.rating = rating;
@@ -120,6 +156,15 @@ export default function SearchScreen() {
   };
   const categoryHandler = (e) => {
     filterSearch({ category: e.target.value });
+  };
+  const rouesHandler = (e) => {
+    filterSearch({ rouesSubCategory: e.target.getAttribute("value") });
+  };
+  const piecesHandler = (e) => {
+    filterSearch({ piecesSubCategory: e.target.getAttribute("value") });
+  };
+  const brandHandler = (e) => {
+    filterSearch({ brand: e.target.value });
   };
   const sortHandler = (e) => {
     filterSearch({ sort: e.target.value });
@@ -182,6 +227,22 @@ export default function SearchScreen() {
                 </Select>
               </Box>
             </ListItem>
+            
+            
+            <ListItem>
+              <Box sx={classes.fullWidth}>
+                <Typography>Marques</Typography>
+                <Select fullWidth value={brand} onChange={brandHandler}>
+                  <MenuItem value="all">Tout</MenuItem>
+                  {brands &&
+                    brands.map((brand) => (
+                      <MenuItem key={brand} value={brand}>
+                        {brand}
+                      </MenuItem>
+                    ))}
+                </Select>
+              </Box>
+            </ListItem>
             <ListItem>
               <Box sx={classes.fullWidth}>
                 <Typography>Prix</Typography>
@@ -210,6 +271,7 @@ export default function SearchScreen() {
               </Box>
             </ListItem>
           </List>
+          
         </Grid>
         <Grid item md={9}>
           <Grid container justifyContent="space-between" alignItems="center">
@@ -240,12 +302,45 @@ export default function SearchScreen() {
           </Grid>
 
           <Grid sx={classes.section} container spacing={3}>
+            {category == 'Pièces de rechange' && 
+
+              
+                <Grid value={piecesSubCategory} onClick={piecesHandler} sx={{display: 'flex', flexWrap: 'wrap', padding: '12px'}}>
+                  {pieces &&
+                    pieces.map((piece) => (
+                      <Box key={piece} value={piece} sx={classes.subCategoryCard}>
+                        {piece}
+                      </Box>
+                      
+                    ))}
+                    <Box value='all' sx={classes.subCategoryCard}>
+                        Tout
+                      </Box>
+                </Grid>
+            }
+            {category == 'Roues' && 
+
+              
+                <Grid value={rouesSubCategory} onClick={rouesHandler} sx={{display: 'flex', flexWrap: 'wrap', padding: '12px'}}>
+                  {roues &&
+                    roues.map((roue) => (
+                      <Box key={roue} value={roue} sx={classes.subCategoryCard}>
+                        {roue}
+                      </Box>
+                      
+                    ))}
+                    <Box value='all' sx={classes.subCategoryCard}>
+                        Tout
+                      </Box>
+                </Grid>
+            }
             {loading ? (
               <CircularProgress />
             ) : error ? (
               <Alert>{error}</Alert>
             ) : (
               <Grid container spacing={3}>
+                
                 {products.map((product) => (
                   <Grid item md={4} key={product.name}>
                     <ProductItem
