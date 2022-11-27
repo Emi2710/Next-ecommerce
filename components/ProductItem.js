@@ -13,9 +13,6 @@ import React from 'react';
 import { urlForThumbnail } from '../utils/image';
 import classes from '../utils/classes';
 
-
-
-
 export default function ProductItem({ product, addToCartHandler }) {
 
   return (

@@ -11,7 +11,7 @@ export default function Comments({ comments = [] }) {
   
   return (
     <>
-      <Typography component="h4" variant="h4" sx={{marginBottom: '40px'}}>
+      <Typography component="h1" variant="h1" sx={{marginBottom: '40px'}}>
         Avis clients
       </Typography>
       <ul className='list-style-none'>

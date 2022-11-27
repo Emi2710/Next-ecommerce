@@ -8,6 +8,7 @@ import ProductItem from '../components/ProductItem';
 import client from '../utils/client';
 import { urlForThumbnail } from '../utils/image';
 import { Store } from '../utils/Store';
+import BestProducts from '../components/accueil/index';
 
 export default function Home() {
   const {
@@ -22,12 +23,22 @@ export default function Home() {
     loading: true,
   });
   const { loading, error, products } = state;
+  
+  const [accueilData, setAccueilData] = useState({
+    accueil: []
+  });
+
+  const { accueil } = accueilData;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const products = await client.fetch(`*[_type == "product"]`);
+        const accueil = await client.fetch(`*[_type == "accueil" ]`);
+
         setState({ products, loading: false });
+        setAccueilData({accueil})
+        //console.log({accueil})
       } catch (err) {
         setState({ loading: false, error: err.message });
       }
@@ -63,21 +74,30 @@ export default function Home() {
 
   return (
     <Layout>
+      
       {loading ? (
         <CircularProgress />
       ) : error ? (
         <Alert variant="danger">{error}</Alert>
       ) : (
-        <Grid container spacing={-2}>
+        <>
+        
+        <BestProducts accueil={accueil} addToCartHandler={addToCartHandler} /> 
+        {/*<Grid container spacing={-2}>
+         
           {products.map((product) => (
             <Grid item md={3} key={product.slug}>
               <ProductItem
                 product={product}
                 addToCartHandler={addToCartHandler}
               ></ProductItem>
+
+              
             </Grid>
           ))}
-        </Grid>
+          </Grid>*/}
+        </>
+        
       )}
     </Layout>
   );

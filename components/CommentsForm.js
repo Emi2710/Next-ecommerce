@@ -5,6 +5,8 @@ import {
   Button,
   TextField,
   Typography,
+  Select,
+  MenuItem,
 } from '@mui/material';
 
 export default function Form({ _id }) {
@@ -61,7 +63,7 @@ export default function Form({ _id }) {
       disabled
       
     >
-      <Typography component="h4" variant="h4">
+      <Typography component="h1" variant="h1">
         Laisser un avis
       </Typography>
       <input {...register('_id')} type="hidden" name="_id" value={_id} />
@@ -82,20 +84,28 @@ export default function Form({ _id }) {
           {...register('email', { required: true })}
           placeholder="adresse@gmail.com"
         />
+
+        <Select
+          name="rating"
+          label="Note sur 5"
+          sx={{marginTop: '15px', }}
+          placeholder='5'
+          {...register('rating', { required: true })} 
+          
+        >
+          <MenuItem value={1}>1</MenuItem>
+          <MenuItem value={2}>2</MenuItem>
+          <MenuItem value={3}>3</MenuItem>
+          <MenuItem value={4}>4</MenuItem>
+          <MenuItem value={5}>5</MenuItem>
+        </Select>
+
+        
      
       
-      <TextField 
-        name="rating"
-        type="number"
-        label="Note sur 5"
-        max="5"
-        placeholder='5'
-        sx={{marginTop: '15px', }}
-        
-        {...register('rating', { required: true })} 
-      />
+      
         <textarea
-          {...register('comment', { required: true })}
+          {...register('comment')}
           name="comment"
           label="Votre message"
           placeholder="Qu'avez pensé du produit ?"

@@ -185,9 +185,16 @@ function OrderScreen({ params }) {
 
   return (
     <Layout title={`Order ${orderId}`}>
+
+
       <Typography component="h1" variant="h1">
         Commande n° {orderId}
       </Typography>
+
+      {isPaid ? <Typography component="h2" variant="h2" sx={{marginTop: '50px'}}>
+        Merci pour votre commande !
+      </Typography>
+      : ''}
 
       {loading ? (
         <CircularProgress />

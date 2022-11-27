@@ -1,4 +1,4 @@
-
+import appareil from '../assets/appareil-photo.jpg'
 
 const classes = {
   section: {
@@ -103,6 +103,30 @@ const classes = {
     padding: '12px',
     cursor: 'pointer',
     borderRadius: '8px'
+  },
+
+  subCategoriesAccueil: {
+    backgroundImage:`linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${appareil.src})`,
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    
+    height: '200px',
+    width: '225px',
+    borderRadius: '12px',
+
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: "18px",
+    letterSpacing: '1px',
+    cursor: 'pointer',
+    margin: '15px'
   }
 };
 

@@ -13,6 +13,7 @@ import shippingAddress from './documents/shippingAddress';
 import blockContent from './objects/blockContent';
 import mainImage from './objects/mainImage';
 import comment from './documents/comment';
+import accueil from './documents/accueil';
 
 export default createSchema({
 
@@ -28,7 +29,8 @@ export default createSchema({
     shippingAddress,
     blockContent,
     mainImage,
-    comment
+    comment,
+    accueil
 
   ]),
 });

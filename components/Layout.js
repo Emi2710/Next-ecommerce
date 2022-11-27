@@ -254,7 +254,7 @@ export default function Layout({ title, description, children, categoriesData })
             
         </Box>
         <Container component="main" sx={classes.main}>
-          <Box sx={classes.mainChildren}>
+          <Box>
             {children}
           </Box>
         </Container>
