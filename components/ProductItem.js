@@ -16,7 +16,7 @@ import classes from '../utils/classes';
 export default function ProductItem({ product, addToCartHandler }) {
 
   return (
-    <Card sx={{boxShadow:"0", backgroundColor:"#fff", marginLeft: "20px", width: '75%'}}>
+    <Card sx={{boxShadow:"0", backgroundColor:"#fff", marginLeft: "20px", width: '75%', marginBottom: '25px'}}>
       <NextLink href={`/product/${product.slug.current}`} passHref>
         
           
@@ -31,11 +31,10 @@ export default function ProductItem({ product, addToCartHandler }) {
           <CardContent sx={{borderTop: "1px solid #CDCDCD"}}>
             <Typography sx={classes.productName}>{product.name}</Typography>
             <Box sx={{display: 'flex'}}>
-              <Rating value={product.rating} readOnly></Rating>
-              <Typography>({product.numReviews})</Typography>
+              <Rating value={product.rating} size="small" readOnly></Rating>
             </Box>
             
-            <Typography fontSize="20px"><p className="bold">€{product.price}</p></Typography>
+            <Typography fontSize="16px"><p className="bold">€{product.price}</p></Typography>
             {product.countInStock > 0 ? <>
               <Button
                   size="small"
@@ -43,7 +42,7 @@ export default function ProductItem({ product, addToCartHandler }) {
                   onClick={() => addToCartHandler(product)}
                   className="add-to-cart-hover"
               >
-                  Ajouter au panier
+                  Ajouter
               </Button></> : 'Indisponible'
             }
             

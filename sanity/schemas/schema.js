@@ -14,6 +14,7 @@ import blockContent from './objects/blockContent';
 import mainImage from './objects/mainImage';
 import comment from './documents/comment';
 import accueil from './documents/accueil';
+import footer from './documents/footer';
 
 export default createSchema({
 
@@ -30,7 +31,8 @@ export default createSchema({
     blockContent,
     mainImage,
     comment,
-    accueil
+    accueil,
+    footer
 
   ]),
 });

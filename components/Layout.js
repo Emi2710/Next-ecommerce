@@ -11,6 +11,7 @@ import {
   CssBaseline,
   Divider,
   Drawer,
+  Grid,
   IconButton,
   InputBase,
   Link,
@@ -37,6 +38,8 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import { getError } from '../utils/error';
+import client from '../utils/client';
+import Footer from './Footer';
 
 export default function Layout({ title, description, children, categoriesData }) {
   const router = useRouter();
@@ -76,7 +79,20 @@ export default function Layout({ title, description, children, categoriesData })
     },
     
   });
+
+
+  const [anchorElNav, setAnchorElNav] = useState(null);
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
   
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+
+
   const [anchorEl, setAnchorEl] = useState(null);
   const loginMenuCloseHandler = (e, redirect) => {
     setAnchorEl(null);
@@ -107,20 +123,26 @@ export default function Layout({ title, description, children, categoriesData })
 
   const { enqueueSnackbar } = useSnackbar();
   const [categories, setCategories] = useState([]);
-  const [brands, setBrands] = useState([]);
+
+  const [footerData, setFooterData] = useState({
+    footer: []
+  });
+
+  const { footer } = footerData;
 
   useEffect(() => {
-    const fetchCategories = async () => {
+    const fetchData = async () => {
       try {
         const { data } = await axios.get(`/api/products/categories`);
-        //const { brandsData } = await axios.get(`/api/products/brands`);
+        const footer = await client.fetch(`*[_type == "footer" ]`);
+
         setCategories(data);
-        //setBrands(brandsData);
+        setFooterData({footer});
       } catch (err) {
         enqueueSnackbar(getError(err), { variant: 'error' });
       }
     };
-    fetchCategories();
+    fetchData();
   }, [enqueueSnackbar]);
 
   const isDesktop = useMediaQuery('(min-width:600px)');
@@ -173,10 +195,12 @@ export default function Layout({ title, description, children, categoriesData })
               </form>
             </Box>
 
-            <Box>
+            <Box sx={{display: 'flex', alignItems: 'center'}}>
+              
               
               {userInfo ? (
                 <>
+                  <Typography sx={{margin: '25px', display: { xs: 'none', sm: 'block' }}}>FR</Typography>
                   <Button
                     aria-controls="simple-menu"
                     aria-haspopup="true"
@@ -231,7 +255,74 @@ export default function Layout({ title, description, children, categoriesData })
               </NextLink>
             </Box>
           </Toolbar>
-        </AppBar>
+        </AppBar> 
+        <Box sx={{display: 'flex', justifyContent: 'space-around', alignItems: 'center', display: { xs: 'flex', sm: 'none' }}}>
+          <Box>
+            <Typography>FR</Typography>
+          </Box>
+          <Box>
+                <form onSubmit={submitHandler}>
+                  <Box sx={classes.searchForm}>
+                    <InputBase
+                      name="query"
+                      sx={classes.searchInput}
+                      placeholder="Rechercher un produit"
+                      onChange={queryChangeHandler}
+                    />
+                    <IconButton
+                      type="submit"
+                      sx={classes.searchButton}
+                      aria-label="search"
+                    >
+                      <SearchIcon />
+                    </IconButton>
+                  </Box>
+                </form>
+          </Box> 
+
+          <Box>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon color="secondary"/>
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              
+            >
+              {categories.map((category) => (
+                <MenuItem key={category} onClick={handleCloseNavMenu}>
+                  <NextLink 
+                    key={category}
+                    href={`/search?category=${category}`}
+                    passHref
+                  >
+                    <Typography textAlign="center">{category}</Typography>  
+                  </NextLink>
+                  
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box> 
+        </Box>
+        
         <Box sx={classes.categories} className="menu-categories">
           
               {categories.map((category) => (
@@ -259,7 +350,44 @@ export default function Layout({ title, description, children, categoriesData })
           </Box>
         </Container>
         <Box component="footer" sx={classes.footer}>
-          <Typography>All rights reserved. Sanity Amazona.</Typography>
+          <Box sx={{display: 'flex', justifyContent: 'space-around', alignItems: 'center', flexWrap: 'wrap'}}>
+            <Box sx={{marginLeft: '50px', flexDirection: 'column', alignItems: 'center', display: {xs: 'none', md: 'flex'}}}>
+              <Image src={logo} alt="Logo e-scoot" width='220px' />
+              <Typography sx={classes.productName}>E-Scoot</Typography>
+            </Box>
+
+            <Box sx={{textAlign: 'left'}}>
+                <Typography component='h2' variant="h2">Informations</Typography>
+                
+                {footer?.map((item) => (
+                  <div key={item.slug}>
+                    <Footer footer={item} />
+                  </div>
+                  
+                ))}
+            </Box>
+                   
+
+            <Box sx={{textAlign: 'left'}}>
+                  <Typography component='h2' variant="h2">Catégories principales</Typography>
+                   
+                     {categories.map((category) => (
+                     <ul className='list-style-none'> 
+                     <NextLink href={`/search?category=${category}`}>
+                      <li>{category}</li> 
+                     </NextLink>
+                      
+                     </ul> 
+                     ))}
+                   
+            </Box>
+
+            
+
+             
+          </Box>
+          
+          <Typography sx={{marginTop: '50px'}}>Tout droits réservés. E-scoot.</Typography>
         </Box>
       </ThemeProvider>
     </>

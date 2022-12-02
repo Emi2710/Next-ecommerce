@@ -157,6 +157,9 @@ export default function SearchScreen() {
   const categoryHandler = (e) => {
     filterSearch({ category: e.target.value });
   };
+  const piecesHandlerSmall = (e) => {
+    filterSearch({ piecesSubCategory: e.target.value });
+  };
   const rouesHandler = (e) => {
     filterSearch({ rouesSubCategory: e.target.getAttribute("value") });
   };
@@ -214,7 +217,7 @@ export default function SearchScreen() {
         <Grid item md={3}>
           <List>
             <ListItem>
-              <Box sx={classes.fullWidth}>
+              <Box sx={{width: '250px'}}>
                 <Typography>Catégories</Typography>
                 <Select fullWidth value={category} onChange={categoryHandler}>
                   <MenuItem value="all">Tout</MenuItem>
@@ -227,6 +230,23 @@ export default function SearchScreen() {
                 </Select>
               </Box>
             </ListItem>
+            {category == 'Pièces de rechange' && 
+              <ListItem> 
+                <Box sx={{width: '250px', display: {xs: 'block', md: 'none'}}}>
+                  <Typography>Sous-catégories</Typography>
+                  <Select fullWidth value={pieces} onChange={piecesHandlerSmall}>
+                    <MenuItem value="all">Tout</MenuItem>
+                    {pieces &&
+                      pieces.map((piece) => (
+                        <MenuItem key={piece} value={piece}>
+                          {piece}
+                        </MenuItem>
+                      ))}
+                  </Select>
+                </Box>
+              </ListItem>
+            }
+            
             
             
             <ListItem>
@@ -305,7 +325,7 @@ export default function SearchScreen() {
             {category == 'Pièces de rechange' && 
 
               
-                <Grid value={piecesSubCategory} onClick={piecesHandler} sx={{display: 'flex', flexWrap: 'wrap', padding: '12px'}}>
+                <Grid value={piecesSubCategory} onClick={piecesHandler} sx={{display: 'flex', flexWrap: 'wrap', padding: '12px', display: {xs: 'none', md: 'flex'}}}>
                   {pieces &&
                     pieces.map((piece) => (
                       <Box key={piece} value={piece} sx={classes.subCategoryCard}>
@@ -339,10 +359,10 @@ export default function SearchScreen() {
             ) : error ? (
               <Alert>{error}</Alert>
             ) : (
-              <Grid container spacing={3}>
+              <Grid container>
                 
                 {products.map((product) => (
-                  <Grid item md={4} key={product.name}>
+                  <Grid item md={4} xs={6} key={product.name}>
                     <ProductItem
                       product={product}
                       addToCartHandler={addToCartHandler}

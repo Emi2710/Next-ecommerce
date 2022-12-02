@@ -16,7 +16,7 @@ import { urlForThumbnail } from '../../utils/image';
 import classes from '../../utils/classes';
 
 
-export default function BestProductItem ({itemRef, addToCartHandler}) {
+export default function Discover ({itemRef, addToCartHandler}) {
 
   const [item, setItem] = useState({product: []});
 
@@ -46,7 +46,7 @@ export default function BestProductItem ({itemRef, addToCartHandler}) {
   return (
       <>
         {product?.map((item) => (
-              <Card sx={{boxShadow:"0", backgroundColor:"#fff", marginLeft: "20px", width: '75%', marginBottom: '25px'}}>
+              <Card sx={{boxShadow:"0", backgroundColor:"#fff", marginLeft: "20px", width: '75%'}}>
                 
                 <NextLink href={`/product/${item.slug.current}`} passHref>
                   
@@ -65,7 +65,7 @@ export default function BestProductItem ({itemRef, addToCartHandler}) {
                         <Rating value={item.rating} size="small" readOnly></Rating>
                       </Box>
                       
-                      <Typography fontSize="18px"><p className="bold">€{item.price}</p></Typography>
+                      <Typography fontSize="20px"><p className="bold">€{item.price}</p></Typography>
                       {item.countInStock > 0 ? <>
                         <Button
                             size="small"
@@ -73,7 +73,7 @@ export default function BestProductItem ({itemRef, addToCartHandler}) {
                             onClick={() => addToCartHandler(item)}
                             className="add-to-cart-hover"
                         >
-                            Ajouter
+                            Ajouter au panier
                         </Button></> : 'Indisponible'
                       }
                       

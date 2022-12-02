@@ -19,7 +19,10 @@ const classes = {
   
   footer: {
     marginTop: 1,
-    textAlign: 'center',
+    textAlign: 'left',
+    backgroundColor: "#D9D9D9",
+    padding: '25px',
+    width: '100vw'
   },
   appbar: {
     backgroundColor: '#fff',
@@ -55,8 +58,8 @@ const classes = {
 
   searchForm: {
     border: '1px solid #ffffff',
-    backgroundColor: '#F7F7F7',
     borderRadius: 1,
+    
   },
   searchInput: {
     paddingLeft: 1,
@@ -64,6 +67,7 @@ const classes = {
     '& ::placeholder': {
       color: '#606060',
     },
+    backgroundColor: '#F7F7F7'
   },
   searchButton: {
     backgroundColor: '#324D67',
@@ -84,15 +88,17 @@ const classes = {
     backgroundColor: "#324D67",
     color: "#fff",
     overflowX: 'auto',
+    display: { xs: 'none', sm: 'flex' }
   },
   productItemButton: {
     //backgroundColor: "#324D67",
     color: '#fff',
-    backgroundColor: "#324D67"
+    backgroundColor: "#324D67",
+    fontSize: '12px'
   },
   productName: {
     color: "#324D67",
-    fontSize: '18px',
+    fontSize: '16px',
     fontWeight: '500',
     overflowWrap: 'break-word',
     maxWidth: '200px'
@@ -102,7 +108,8 @@ const classes = {
     margin: '15px 5px',
     padding: '12px',
     cursor: 'pointer',
-    borderRadius: '8px'
+    borderRadius: '8px',
+    fontSize: '14px'
   },
 
   subCategoriesAccueil: {
