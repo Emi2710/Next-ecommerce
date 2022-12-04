@@ -1,9 +1,15 @@
 import Stripe from 'stripe';
+import axios from 'axios';
+import { useContext } from 'react';
+import { Store } from '../../../utils/Store';
+
+//const { state } = useContext(Store);
+//const { userInfo } = state;
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 export default async function handler(req, res) {
-  console.log('hey')
+  
   if (req.method === 'POST') {
     
     try {
@@ -12,11 +18,12 @@ export default async function handler(req, res) {
         mode: 'payment',
         payment_method_types: ['card'],
         billing_address_collection: 'auto',
-        line_items: req.body.map((item) => {
+        line_items: req.body.orderItems.map((item) => {
           const img = item.image;
           const newImage = img.replace('image-', 'https://cdn.sanity.io/images/73zysq8l/production/').replace('-webp', '.webp');
 
           return {
+            
             price_data: { 
               currency: 'eur',
               product_data: { 
@@ -33,12 +40,15 @@ export default async function handler(req, res) {
           }
         }),
         mode: 'payment',
-        success_url: `${req.headers.origin}/success`,
-        cancel_url: `${req.headers.origin}/canceled`,
+        success_url: `${req.headers.origin}/success/?id=${req.body.order._id}`,
+        cancel_url: `${req.headers.origin}/cancel`,
+        
+        
       } 
       // Create Checkout Sessions from body params.
       const session = await stripe.checkout.sessions.create(params);
       res.status(200).json(session)
+      
     } catch (err) {
       res.status(err.statusCode || 500).json(err.message);
     }

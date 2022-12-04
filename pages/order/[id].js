@@ -77,6 +77,8 @@ function OrderScreen({ params }) {
   } = order;
 
   const router = useRouter();
+  
+
   const { state } = useContext(Store);
   const { userInfo, cartItems } = state;
 
@@ -166,14 +168,11 @@ function OrderScreen({ params }) {
     const response = await fetch('/api/keys/stripe', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(orderItems),
+      
+      body: JSON.stringify({orderItems, order}),
     });
-
-    
-
-    
 
     if(response.statusCode === 500) return;
     
@@ -182,6 +181,9 @@ function OrderScreen({ params }) {
     toast.loading('Redirecting...');
 
     stripe.redirectToCheckout({ sessionId: data.id });
+
+      
+    
   }
 
   return (
@@ -363,6 +365,7 @@ function OrderScreen({ params }) {
                               color="primary"
                               fullWidth
                               onClick={handleCheckout}
+                            
                             >Payer</Button>
                         </Box>
                       )}

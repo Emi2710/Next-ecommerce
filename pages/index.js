@@ -11,6 +11,8 @@ import { Store } from '../utils/Store';
 import BestProducts from '../components/accueil/index';
 
 export default function Home() {
+
+  
   const {
     state: { cart },
     dispatch,
@@ -81,6 +83,7 @@ export default function Home() {
         <Alert variant="danger">{error}</Alert>
       ) : (
         <>
+        
         
         <BestProducts accueil={accueil} addToCartHandler={addToCartHandler} /> 
         {/*<Grid container spacing={-2}>
