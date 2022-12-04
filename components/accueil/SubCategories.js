@@ -1,17 +1,10 @@
 import React from 'react';
 import {
-  Button,
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Rating,
   Typography,
   Box,
   Grid
 } from '@mui/material';
 import NextLink from 'next/link';
-import Image from 'next/image';
 import classes from '../../utils/classes';
 
 import roues from '../../utils/subCategories/roues';
@@ -27,7 +20,6 @@ import freins from '../../assets/categories/freins.jpg';
 import moulures from '../../assets/categories/moulures.jpg';
 import personnalisation from '../../assets/categories/personnalisation.jpg';
 import pneus from '../../assets/categories/pneus.jpg';
-import pneus2 from '../../assets/categories/pneus2.gif';
 import rouesPleines from '../../assets/categories/roues-pleines.gif';
 import suspension from '../../assets/categories/suspension.jpg';
 

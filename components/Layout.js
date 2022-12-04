@@ -9,13 +9,9 @@ import {
   Button,
   Container,
   CssBaseline,
-  Divider,
-  Drawer,
-  Grid,
   IconButton,
   InputBase,
   Link,
-  List,
   ListItem,
   ListItemText,
   Menu,
@@ -27,7 +23,6 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import CancelIcon from '@mui/icons-material/Cancel';
 import Head from 'next/head';
 import NextLink from 'next/link';
 import classes from '../utils/classes';
@@ -41,7 +36,7 @@ import { getError } from '../utils/error';
 import client from '../utils/client';
 import Footer from './Footer';
 
-export default function Layout({ title, description, children, categoriesData }) {
+export default function Layout({ title, description, children }) {
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const { cart, userInfo } = state;
@@ -256,7 +251,7 @@ export default function Layout({ title, description, children, categoriesData })
             </Box>
           </Toolbar>
         </AppBar> 
-        <Box sx={{display: 'flex', justifyContent: 'space-around', alignItems: 'center', display: { xs: 'flex', sm: 'none' }}}>
+        <Box sx={{justifyContent: 'space-around', alignItems: 'center', display: { xs: 'flex', sm: 'none' }}}>
           <Box>
             <Typography>FR</Typography>
           </Box>
@@ -374,7 +369,7 @@ export default function Layout({ title, description, children, categoriesData })
                      {categories.map((category) => (
                      <ul className='list-style-none'> 
                      <NextLink href={`/search?category=${category}`}>
-                      <li>{category}</li> 
+                      <li key={category}>{category}</li> 
                      </NextLink>
                       
                      </ul> 

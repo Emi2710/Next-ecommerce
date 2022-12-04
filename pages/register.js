@@ -182,7 +182,7 @@ export default function RegisterScreen() {
           </ListItem>
           <ListItem>
             <Button variant="contained" type="submit" fullWidth color="primary">
-              S'inscrire
+              Inscription
             </Button>
           </ListItem>
           <ListItem>

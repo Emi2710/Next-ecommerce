@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import axios from 'axios';
@@ -9,9 +9,6 @@ const Success = () => {
   
   const router = useRouter();
   const { id } = router.query;
-  //const { order } = router.query;
-
-  console.log(id)
 
 
   const { state } = useContext(Store);

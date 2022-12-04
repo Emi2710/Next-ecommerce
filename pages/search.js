@@ -325,7 +325,7 @@ export default function SearchScreen() {
             {category == 'Pièces de rechange' && 
 
               
-                <Grid value={piecesSubCategory} onClick={piecesHandler} sx={{display: 'flex', flexWrap: 'wrap', padding: '12px', display: {xs: 'none', md: 'flex'}}}>
+                <Grid value={piecesSubCategory} onClick={piecesHandler} sx={{flexWrap: 'wrap', padding: '12px', display: {xs: 'none', md: 'flex'}}}>
                   {pieces &&
                     pieces.map((piece) => (
                       <Box key={piece} value={piece} sx={classes.subCategoryCard}>

@@ -80,7 +80,7 @@ function OrderScreen({ params }) {
   
 
   const { state } = useContext(Store);
-  const { userInfo, cartItems } = state;
+  const { userInfo } = state;
 
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
 

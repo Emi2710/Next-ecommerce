@@ -1,10 +1,9 @@
-import { Alert, CircularProgress, Grid } from '@mui/material';
+import { Alert, CircularProgress } from '@mui/material';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
 import { useContext, useEffect, useState } from 'react';
 import Layout from '../components/Layout';
-import ProductItem from '../components/ProductItem';
 import client from '../utils/client';
 import { urlForThumbnail } from '../utils/image';
 import { Store } from '../utils/Store';
@@ -24,7 +23,7 @@ export default function Home() {
     error: '',
     loading: true,
   });
-  const { loading, error, products } = state;
+  const { loading, error } = state;
   
   const [accueilData, setAccueilData] = useState({
     accueil: []
@@ -40,7 +39,6 @@ export default function Home() {
 
         setState({ products, loading: false });
         setAccueilData({accueil})
-        //console.log({accueil})
       } catch (err) {
         setState({ loading: false, error: err.message });
       }
@@ -86,19 +84,7 @@ export default function Home() {
         
         
         <BestProducts accueil={accueil} addToCartHandler={addToCartHandler} /> 
-        {/*<Grid container spacing={-2}>
-         
-          {products.map((product) => (
-            <Grid item md={3} key={product.slug}>
-              <ProductItem
-                product={product}
-                addToCartHandler={addToCartHandler}
-              ></ProductItem>
-
-              
-            </Grid>
-          ))}
-          </Grid>*/}
+        
         </>
         
       )}

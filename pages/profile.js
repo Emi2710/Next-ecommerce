@@ -34,7 +34,7 @@ function ProfileScreen() {
   const submitHandler = async ({ name, email, password, confirmPassword }) => {
     closeSnackbar();
     if (password !== confirmPassword) {
-      enqueueSnackbar("Passwords don't match", { variant: 'error' });
+      enqueueSnackbar("Les mots de passe ne sont pas identiques", { variant: 'error' });
       return;
     }
     try {
@@ -49,7 +49,7 @@ function ProfileScreen() {
       );
       dispatch({ type: 'USER_LOGIN', payload: data });
       jsCookie.set('userInfo', JSON.stringify(data));
-      enqueueSnackbar('Profile updated successfully', { variant: 'success' });
+      enqueueSnackbar('Votre profile a bien été mis à jour', { variant: 'success' });
     } catch (err) {
       enqueueSnackbar(getError(err), { variant: 'error' });
     }

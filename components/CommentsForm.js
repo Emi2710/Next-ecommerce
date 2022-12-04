@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Rating } from '@mui/material';
 import {
   Button,
   TextField,
@@ -13,17 +12,11 @@ export default function Form({ _id }) {
   const [formData, setFormData] = useState()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [hasSubmitted, setHasSubmitted] = useState(false)
-  const [rating, setRating] = useState(null);
   
-  /*const updateRating = (newRating) => {
-    setRating(newRating);
-    console.log(rating);
-}*/
 
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm()
   const onSubmit = async (data) => {

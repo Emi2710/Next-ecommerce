@@ -11,7 +11,6 @@ import {
   Rating,
   Typography,
 } from '@mui/material';
-import Image from 'next/image';
 import NextLink from 'next/link';
 import { useContext, useEffect, useState } from 'react';
 import { useSnackbar } from 'notistack';
@@ -25,7 +24,6 @@ import { useRouter } from 'next/router';
 import {PortableText as BasePortableText} from '@portabletext/react';
 import Comments from '../../components/Comments';
 import CommentsForm from '../../components/CommentsForm';
-import { getProductAndMoreProducts, getAllProductsWithSlug } from '../../lib/api';
 
 export default function ProductScreen(props) {
 
@@ -75,22 +73,7 @@ export default function ProductScreen(props) {
     fetchData();
   }, []);
 
-  //const reviewValue = (comments.rating + comments.rating) / comments.length;
-  //console.log(comments.map((comment) => (<>{comment.rating})</>)))
-
-  /*const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100; // 123.456 => 123.46
-  const itemsPrice = round2(
-    cartItems.reduce((a, c) => a + c.price * c.quantity, 0)
-  );*/
-  /*const totalReviews = 
-    comments.reduce((a, c) => a + a / c.length, 0);
-
-  function numAverage(a) {
-    var b = comments.length
-    return a/b;
-  }*/
-
-  //console.log(comments.rating)
+  
 
   
   const addToCartHandler = async () => {
@@ -120,24 +103,7 @@ export default function ProductScreen(props) {
     router.push('/cart');
   };
 
-  /*useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        const comments = await client.fetch(
-          `
-            *[_type == "comment" && product._ref == $productId && approved == true]`, {
-              productId: product._id,
-            }
-        );
-        setProductComments({comments});
-      } catch (err) {
-        //setProductComments({ loading: false, error: err.message });
-        console.error(err)
-      }
-    };
-    fetchComments();
-  }, []);*/
-
+  
 
 
   
@@ -188,13 +154,7 @@ export default function ProductScreen(props) {
                 <ListItem>Catégorie: {product.category}</ListItem>
                 <ListItem>Marque: {product.brand}</ListItem>
                 <ListItem>
-                  {/*comments.map((comment) => (
-                    <>
-                      <Rating readOnly></Rating>
-                      {console.log(comment.rating)}
-
-                    </>
-                  ))*/}
+                  
                   <Rating value={product.rating} readOnly />
                   
                   <Typography sx={classes.smallText}>
@@ -279,27 +239,3 @@ export function getComments() {
 
 }
 
-/*export async function getStaticProps({ params, preview = false }) {
-  const data = await getProductAndMoreProducts(params.slug, preview)
-  return {
-    props: {
-      preview,
-      product: data?.product || null,
-      moreProducts: data?.moreProducts || null,
-    },
-    revalidate: 1,
-  }
-}
-
-export async function getStaticPaths() {
-  const allProducts = await getAllProductsWithSlug()
-  return {
-    paths:
-      allProducts?.map((product) => ({
-        params: {
-          slug: product.slug,
-        },
-      })) || [],
-    fallback: true,
-  }
-}*/

@@ -1,10 +1,3 @@
-import Stripe from 'stripe';
-import axios from 'axios';
-import { useContext } from 'react';
-import { Store } from '../../../utils/Store';
-
-//const { state } = useContext(Store);
-//const { userInfo } = state;
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 

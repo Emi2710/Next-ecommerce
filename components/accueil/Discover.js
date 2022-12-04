@@ -9,7 +9,6 @@ import {
   Rating,
   Typography,
   Box,
-  Grid
 } from '@mui/material';
 import NextLink from 'next/link';
 import { urlForThumbnail } from '../../utils/image';
@@ -46,7 +45,7 @@ export default function Discover ({itemRef, addToCartHandler}) {
   return (
       <>
         {product?.map((item) => (
-              <Card sx={{boxShadow:"0", backgroundColor:"#fff", marginLeft: "20px", width: '75%'}}>
+              <Card sx={{boxShadow:"0", backgroundColor:"#fff", marginLeft: "20px", width: '75%'}} key={item.slug}>
                 
                 <NextLink href={`/product/${item.slug.current}`} passHref>
                   

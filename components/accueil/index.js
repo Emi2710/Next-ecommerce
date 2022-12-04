@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import BestProductItem from './bestProductItem';
 import {
   Grid,
@@ -14,32 +14,7 @@ import {PortableText as BasePortableText} from '@portabletext/react';
 
 export default function BestProducts ({ accueil = [], addToCartHandler }) {
 
-    /*const [products, setProducts] = useState({
-    product: []});
-
-    const { product } = products;
-
-    const ref  = accueil.map((acc) => (acc.bestProducts.map((item) => (item._ref))));
-
-    useEffect(() => {
     
-    const fetchData = async () => {
-      try {
-
-        const product = await client.fetch(           
-          `
-            *[_type == "product" && _id == $productRef]`, {
-                productRef: ref[0], 
-            }
-        );
-        setProducts({product});
-      } catch (err) {
-        console.error(err.message);
-      }
-    };
-    
-    fetchData();
-  }, []);*/
 
 
 
@@ -51,7 +26,7 @@ export default function BestProducts ({ accueil = [], addToCartHandler }) {
           <Grid container spacing={-2}>
 
                     {acc.bestProducts.map((item) => (
-                        <Grid item md={3} xs={6}>
+                        <Grid item md={3} xs={6} key={item._ref}>
                           <BestProductItem itemRef={item._ref} addToCartHandler={addToCartHandler} className="display-flex"/>
                         </Grid>
                     ))}
@@ -65,7 +40,7 @@ export default function BestProducts ({ accueil = [], addToCartHandler }) {
           <Grid container spacing={-2}>
 
             {acc.typeProducts.map((item) => (
-                          <Grid item md={3}>
+                          <Grid item md={3} key={item._ref}>
                             <Discover itemRef={item._ref} addToCartHandler={addToCartHandler} className="display-flex"/>
                           </Grid>
             ))} 
