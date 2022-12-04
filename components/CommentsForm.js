@@ -21,10 +21,9 @@ export default function Form({ _id }) {
   } = useForm()
   const onSubmit = async (data) => {
     setIsSubmitting(true)
-    let response = ''
     setFormData(data)
     try {
-      response = await fetch('/api/comments/createComment', {
+      await fetch('/api/comments/createComment', {
         method: 'POST',
         body: JSON.stringify(data),
         type: 'application/json',
