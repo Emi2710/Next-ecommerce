@@ -1,4 +1,4 @@
-import Date from './date'
+import Date from './Date'
 import { Rating } from '@mui/material';
 import {
   Typography,
