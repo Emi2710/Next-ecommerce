@@ -32,7 +32,6 @@ export default async function handler(req, res) {
             quantity: item.quantity
           }
         }),
-        mode: 'payment',
         success_url: `${req.headers.origin}/success/?id=${req.body.order._id}`,
         cancel_url: `${req.headers.origin}/cancel`,
         

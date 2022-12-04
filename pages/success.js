@@ -16,7 +16,7 @@ const Success = () => {
 
   const paymentSuccess = async () => {
         try {
-            const response = await axios.put(
+            await axios.put(
               `/api/orders/${id}/pay`,
               id,
               {

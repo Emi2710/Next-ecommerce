@@ -367,7 +367,7 @@ export default function Layout({ title, description, children }) {
                   <Typography component='h2' variant="h2">Catégories principales</Typography>
                    
                      {categories.map((category) => (
-                     <ul className='list-style-none'> 
+                     <ul className='list-style-none' key={category}> 
                      <NextLink href={`/search?category=${category}`}>
                       <li key={category}>{category}</li> 
                      </NextLink>

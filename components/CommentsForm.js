@@ -21,7 +21,6 @@ export default function Form({ _id }) {
   } = useForm()
   const onSubmit = async (data) => {
     setIsSubmitting(true)
-    let response
     setFormData(data)
     try {
       response = await fetch('/api/comments/createComment', {
@@ -45,6 +44,17 @@ export default function Form({ _id }) {
       <Typography component="h3" variant="h3">
         Merci pour votre commentaire
       </Typography>
+      <ul>
+          <li>
+            Nom: {formData.name}
+          </li>
+          <li>
+            Email: {formData.email}
+          </li>
+          <li>
+            Commentaire: {formData.comment}
+          </li>
+        </ul>
       </>
     )
   }
