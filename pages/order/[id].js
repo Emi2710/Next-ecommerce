@@ -159,18 +159,19 @@ function OrderScreen({ params }) {
 
   const handleCheckout = async () => {
 
-    console.log(orderItems)
+    //console.log(orderItems)
 
     const stripe = await getStripe();
 
     const response = await fetch('/api/keys/stripe', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        authorization: `Bearer ${userInfo.token}`,
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(orderItems),
     });
+
+    
 
     
 
@@ -346,7 +347,7 @@ function OrderScreen({ params }) {
                       <CircularProgress />
                     ) : (
                       <>
-                     
+                      {paymentMethod == 'PayPal' && (
                         <Box sx={classes.fullWidth}>
                             <PayPalButtons
                               createOrder={createOrder}
@@ -354,6 +355,18 @@ function OrderScreen({ params }) {
                               onError={onError}
                             ></PayPalButtons>
                         </Box>
+                      )}
+                      {paymentMethod == 'Stripe' && (
+                        <Box sx={classes.fullWidth}>
+                            <Button
+                              variant="contained"
+                              color="primary"
+                              fullWidth
+                              onClick={handleCheckout}
+                            >Payer</Button>
+                        </Box>
+                      )}
+                        
                      
                         
                       </>
