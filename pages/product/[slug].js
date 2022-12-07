@@ -49,8 +49,7 @@ export default function ProductScreen(props) {
   const { product, loading, error } = state;
   const { comments } = productComments;
 
-  const [relatedProducts, setRelatedProducts] = useState({related: []});
-  const { related } = relatedProducts;
+  
 
   useEffect(() => {
     
