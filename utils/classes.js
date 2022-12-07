@@ -94,7 +94,7 @@ const classes = {
     //backgroundColor: "#324D67",
     color: '#fff',
     backgroundColor: "#324D67",
-    fontSize: '12px'
+    fontSize: '9px'
   },
   productName: {
     color: "#324D67",

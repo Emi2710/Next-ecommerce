@@ -38,7 +38,7 @@ export default function ProductItem({ product, addToCartHandler }) {
                         <>
                         <Box sx={{display: 'flex', alignItems: 'center'}}>
                           <Typography fontSize="14px" sx={{textDecoration: 'line-through', fontWeight: 'bold'}}>€{product.price}</Typography>
-                          <Typography fontSize="14px" sx={{marginLeft: '12px'}}><p>€{product.salePurcent}</p></Typography>  
+                          <Typography fontSize="14px" sx={{marginLeft: '12px'}}><p>{product.salePurcent}</p></Typography>  
                         </Box>
                         
                         <Typography fontSize="18px" sx={{color: '#D33636', fontWeight: 'bold', marginTop: '0px', marginBottom: '12px'}}>€{product.onSalePrice}</Typography>

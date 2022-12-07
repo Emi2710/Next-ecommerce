@@ -131,6 +131,10 @@ export default {
     },
     
   ],
+
+  initialValue: {
+    rating: 0
+  }
   
 
 };
