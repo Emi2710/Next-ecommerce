@@ -19,7 +19,9 @@ function MyApp({
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       >
         <StoreProvider>
-            <PayPalScriptProvider deferLoading={true}>
+            <PayPalScriptProvider deferLoading={true} options={{
+          "AW3GWovzMJJ9LXllSZwHE9cvOW-biwRZc-MckTH6XflCF22U3IZF1gDUHGONXsml2aXDVSSYx_ViEsRI": "",
+        }}>
               <Component {...pageProps} />
             </PayPalScriptProvider>  
           
