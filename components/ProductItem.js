@@ -34,7 +34,21 @@ export default function ProductItem({ product, addToCartHandler }) {
               <Rating value={product.rating} size="small" readOnly></Rating>
             </Box>
             
-            <Typography fontSize="16px"><p className="bold">€{product.price}</p></Typography>
+            {product.onSalePrice? (
+                        <>
+                        <Box sx={{display: 'flex', alignItems: 'center'}}>
+                          <Typography fontSize="14px" sx={{textDecoration: 'line-through', fontWeight: 'bold'}}>€{product.price}</Typography>
+                          <Typography fontSize="14px" sx={{marginLeft: '12px'}}><p>€{product.salePurcent}</p></Typography>  
+                        </Box>
+                        
+                        <Typography fontSize="18px" sx={{color: '#D33636', fontWeight: 'bold', marginTop: '0px', marginBottom: '12px'}}>€{product.onSalePrice}</Typography>
+                        
+                        </>
+                      ) : (
+                        <>
+                          <Typography fontSize="18px" sx={{fontWeight: 'bold', margin: '12px 0'}}>€{product.price}</Typography>
+                        </>
+                      )}
             {product.countInStock > 0 ? <>
               <Button
                   size="small"
@@ -42,7 +56,7 @@ export default function ProductItem({ product, addToCartHandler }) {
                   onClick={() => addToCartHandler(product)}
                   className="add-to-cart-hover"
               >
-                  Ajouter
+                  Ajouter au panier
               </Button></> : 'Indisponible'
             }
             

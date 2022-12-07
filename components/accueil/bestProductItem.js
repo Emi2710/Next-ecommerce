@@ -63,8 +63,22 @@ export default function BestProductItem ({itemRef, addToCartHandler}) {
                       <Box sx={{display: 'flex'}}>
                         <Rating value={item.rating} size="small" readOnly></Rating>
                       </Box>
+                      {item.onSalePrice? (
+                        <>
+                        <Box sx={{display: 'flex', alignItems: 'center'}}>
+                          <Typography fontSize="14px" sx={{textDecoration: 'line-through', fontWeight: 'bold'}}>€{item.price}</Typography>
+                          <Typography fontSize="14px" sx={{marginLeft: '12px'}}><p>€{item.salePurcent}</p></Typography>  
+                        </Box>
+                        
+                        <Typography fontSize="18px" sx={{color: '#D33636', fontWeight: 'bold', marginTop: '0px', marginBottom: '12px'}}>€{item.onSalePrice}</Typography>
+                        
+                        </>
+                      ) : (
+                        <>
+                          <Typography fontSize="18px" sx={{fontWeight: 'bold', margin: '12px 0'}}>€{item.price}</Typography>
+                        </>
+                      )}
                       
-                      <Typography fontSize="18px"><p className="bold">€{item.price}</p></Typography>
                       {item.countInStock > 0 ? <>
                         <Button
                             size="small"
@@ -72,7 +86,7 @@ export default function BestProductItem ({itemRef, addToCartHandler}) {
                             onClick={() => addToCartHandler(item)}
                             className="add-to-cart-hover"
                         >
-                            Ajouter
+                            Ajouter au panier
                         </Button></> : 'Indisponible'
                       }
                       

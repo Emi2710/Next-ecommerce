@@ -10,7 +10,17 @@ export default {
     },
     {
       name: 'price',
-      title: 'Price',
+      title: 'Prix',
+      type: 'number',
+    },
+    {
+      name: 'salePurcent',
+      title: 'Pourcentage des soldes',
+      type: 'string',
+    },
+    {
+      name: 'onSalePrice',
+      title: 'Prix soldé',
       type: 'number',
     },
     {

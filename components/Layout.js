@@ -348,7 +348,6 @@ export default function Layout({ title, description, children }) {
           <Box sx={{display: 'flex', justifyContent: 'space-around', alignItems: 'center', flexWrap: 'wrap'}}>
             <Box sx={{marginLeft: '50px', flexDirection: 'column', alignItems: 'center', display: {xs: 'none', md: 'flex'}}}>
               <Image src={logo} alt="Logo e-scoot" width='220px' />
-              <Typography sx={classes.productName}>E-Scoot</Typography>
             </Box>
 
             <Box sx={{textAlign: 'left'}}>
