@@ -24,6 +24,7 @@ import { useRouter } from 'next/router';
 import {PortableText as BasePortableText} from '@portabletext/react';
 import Comments from '../../components/Comments';
 import CommentsForm from '../../components/CommentsForm';
+import BestProductItem from '../../components/accueil/bestProductItem';
 
 export default function ProductScreen(props) {
 
@@ -48,6 +49,9 @@ export default function ProductScreen(props) {
   const { product, loading, error } = state;
   const { comments } = productComments;
 
+  const [relatedProducts, setRelatedProducts] = useState({related: []});
+  const { related } = relatedProducts;
+
   useEffect(() => {
     
     const fetchData = async () => {
@@ -63,6 +67,7 @@ export default function ProductScreen(props) {
               productId: product._id,
             }
         );
+        
         setState({ ...state, product, loading: false });
         setProductComments({comments});
       } catch (err) {
@@ -218,7 +223,22 @@ export default function ProductScreen(props) {
             <CommentsForm _id={product._id} />
 
           </Box>  
+
+
+          <Typography component="h2" variant="h2" sx={{margin: '50px 0'}}>{product.related}</Typography>
+
+          <Grid container spacing={-2}>
+
+                    {product.productsRelated.map((item) => (
+                        <Grid item md={3} xs={6} key={item._ref}>
+                          <BestProductItem itemRef={item._ref} addToCartHandler={addToCartHandler} className="display-flex"/>
+                        </Grid>
+                    ))}
+
+          </Grid>
         </Box>
+
+        
         
       )}
     </Layout>

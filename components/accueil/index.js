@@ -40,7 +40,7 @@ export default function BestProducts ({ accueil = [], addToCartHandler }) {
           <Grid container spacing={-2}>
 
             {acc.typeProducts.map((item) => (
-                          <Grid item md={3} key={item._ref}>
+                          <Grid item md={3} xs={6} key={item._ref}>
                             <Discover itemRef={item._ref} addToCartHandler={addToCartHandler} className="display-flex"/>
                           </Grid>
             ))} 

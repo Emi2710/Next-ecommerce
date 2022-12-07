@@ -14,12 +14,6 @@ export default {
       type: 'number',
     },
     {
-      name: "currency",
-      title: "Currency",
-      description: "Keep this 'usd' for the purposes of this tutorial",
-      type: "string",
-    },
-    {
       name: 'image',
       title: 'Images',
       type: 'array',
@@ -109,21 +103,24 @@ export default {
       title: 'Rating',
       type: 'number',
     },
-
-    {
-      name: 'numReviews',
-      title: 'NumReviews',
-      type: 'number',
-    },
     {
       name: 'countInStock',
       title: 'CountInStock',
       type: 'number',
     },
+    {
+      name: 'related',
+      title: 'Suggestions',
+      type: 'string',
+    },
+    {
+      name: 'productsRelated',
+      title: 'Produits en suggestion',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'product' }] }],
+    },
     
   ],
-  initialValue: {
-    currency: "eur",
-  },
+  
 
 };
