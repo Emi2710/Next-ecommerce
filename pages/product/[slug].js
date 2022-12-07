@@ -228,7 +228,7 @@ export default function ProductScreen(props) {
 
           <Grid container spacing={-2}>
 
-                    {product.productsRelated.map((item) => (
+                    {product.productsRelated?.map((item) => (
                         <Grid item md={3} xs={6} key={item._ref}>
                           <BestProductItem itemRef={item._ref} addToCartHandler={addToCartHandler} className="display-flex"/>
                         </Grid>
