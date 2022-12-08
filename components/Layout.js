@@ -36,13 +36,11 @@ import { getError } from '../utils/error';
 import client from '../utils/client';
 import Footer from './Footer';
 import Script from 'next/script';
+import $ from 'jquery';
+
 
 
 export default function Layout({ title, description, children }) {
-
-  
-
-
 
 
 
@@ -270,7 +268,8 @@ export default function Layout({ title, description, children }) {
                     <Script type="text/javascript" id="google-script-function">
                       {`function googleTranslateElementInit() {
                           new google.translate.TranslateElement(
-                              {includedLanguages : 'en,fr'},
+                              {pageLanguage: 'fr',
+                              includedLanguages : 'en,fr'},
                               'google_translate_element'
                           );
                       }`}
@@ -281,18 +280,7 @@ export default function Layout({ title, description, children }) {
                             src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
                     </Script>
 
-                    <Script id="gt-change-content">
-                      {`$(document).ready(function(){
-    $('#google_translate_element').bind('DOMNodeInserted', function(event) {
-      $('.goog-te-menu-value span:first').html('LANGUAGE');
-      $('.goog-te-menu-frame.skiptranslate').load(function(){
-        setTimeout(function(){
-          $('.goog-te-menu-frame.skiptranslate').contents().find('.goog-te-menu2-item-selected .text').html('LANGUAGE');    
-        }, 100);
-      });
-    });
-  });`}
-                    </Script>
+                    
 
                   
 

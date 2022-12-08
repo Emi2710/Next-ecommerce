@@ -119,6 +119,7 @@ body {
     border-radius: 3px;
     padding: 6px 8px;
     margin-top: 18px;
+    max-width: 90px;
 }
 
 .goog-logo-link {
