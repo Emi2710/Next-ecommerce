@@ -5,6 +5,8 @@ import { StoreProvider } from '../utils/Store';
 import { SnackbarProvider } from 'notistack';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 
+import Script from 'next/script';
+
 
 const clientSideEmotionCache = createCache({ key: 'css' });
 

@@ -16,6 +16,7 @@ import {
   ListItemText,
   Menu,
   MenuItem,
+  Select,
   ThemeProvider,
   Toolbar,
   Typography,
@@ -35,8 +36,20 @@ import { useSnackbar } from 'notistack';
 import { getError } from '../utils/error';
 import client from '../utils/client';
 import Footer from './Footer';
+import Script from 'next/script';
+
 
 export default function Layout({ title, description, children }) {
+
+  
+
+
+
+
+
+
+
+
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const { cart, userInfo } = state;
@@ -195,7 +208,8 @@ export default function Layout({ title, description, children }) {
               
               {userInfo ? (
                 <>
-                  <Typography sx={{margin: '25px', display: { xs: 'none', sm: 'block' }}}>FR</Typography>
+                
+                  
                   <Button
                     aria-controls="simple-menu"
                     aria-haspopup="true"
@@ -251,11 +265,26 @@ export default function Layout({ title, description, children }) {
             </Box>
           </Toolbar>
         </AppBar> 
-        <Box sx={{justifyContent: 'space-around', alignItems: 'center', display: { xs: 'flex', sm: 'none' }}}>
-          <Box>
-            <Typography>FR</Typography>
-          </Box>
-          <Box>
+        <Box sx={{justifyContent: 'space-around', alignItems: 'center', display: { xs: 'flex' }}}>
+          <Box sx={classes.translationSelector}>
+                    <div id="google_translate_element"></div>
+                    <Script type="text/javascript">
+                      {`function googleTranslateElementInit() {
+                          new google.translate.TranslateElement(
+                              {includedLanguages : 'en,fr'},
+                              'google_translate_element'
+                          );
+                      }`}
+                    </Script>
+  
+                    <Script type="text/javascript"
+                            src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+                    </Script>
+
+                  
+
+            </Box>
+          <Box sx={{display: { xs: 'flex', sm: 'none' }}}>
                 <form onSubmit={submitHandler}>
                   <Box sx={classes.searchForm}>
                     <InputBase
@@ -275,7 +304,7 @@ export default function Layout({ title, description, children }) {
                 </form>
           </Box> 
 
-          <Box>
+          <Box sx={{display: { xs: 'flex', sm: 'none' }}}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -384,6 +413,8 @@ export default function Layout({ title, description, children }) {
           <Typography sx={{marginTop: '50px'}}>Tout droits réservés. E-scoot.</Typography>
         </Box>
       </ThemeProvider>
+
+      
     </>
   );
 }

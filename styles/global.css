@@ -94,3 +94,51 @@ button.add-to-cart-hover:hover {
         width: 50%;
     }
 }
+
+
+.goog-logo-link {
+    display: none !important;
+}
+
+.goog-te-gadget {
+    color: transparent !important;
+}
+
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
+
+body {
+    top: 0px !important;
+}
+
+#google_translate_element select {
+    background: #f6edfd;
+    color: #000000;
+    border: none;
+    border-radius: 3px;
+    padding: 6px 8px;
+    margin-top: 18px;
+}
+
+.goog-logo-link {
+    display: none !important;
+}
+
+.goog-te-gadget {
+    color: transparent !important;
+}
+
+.goog-te-banner-frame {
+    display: none !important;
+}
+
+#goog-gt-tt,
+.goog-te-balloon-frame {
+    display: none !important;
+}
+
+.goog-text-highlight {
+    background: none !important;
+    box-shadow: none !important;
+}
