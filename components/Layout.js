@@ -267,7 +267,7 @@ export default function Layout({ title, description, children }) {
         <Box sx={{justifyContent: 'space-around', alignItems: 'center', display: { xs: 'flex' }}}>
           <Box sx={classes.translationSelector}>
                     <div id="google_translate_element"></div>
-                    <Script type="text/javascript">
+                    <Script type="text/javascript" id="google-script-function">
                       {`function googleTranslateElementInit() {
                           new google.translate.TranslateElement(
                               {includedLanguages : 'en,fr'},
@@ -277,6 +277,7 @@ export default function Layout({ title, description, children }) {
                     </Script>
   
                     <Script type="text/javascript"
+                            id="google-script"
                             src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
                     </Script>
 
