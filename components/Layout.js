@@ -281,6 +281,18 @@ export default function Layout({ title, description, children }) {
                             src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
                     </Script>
 
+                    <Script>
+                      {`var targetElement = document.getElementById("google_translate_element");
+                        var yourContent = "Your text or <br /> HTML element"
+                        targetElement.addEventListener("DOMNodeInserted", () => {
+                          $(".goog-te-menu-value span:first").each(function (i, obj) {
+                            if (obj.childNodes[0] && obj.childNodes[0].textContent == "Langue") {
+                              $(obj).html(yourContent);
+                            }
+                          });
+                        });`}
+                    </Script>
+
                   
 
             </Box>
