@@ -36,7 +36,6 @@ import { getError } from '../utils/error';
 import client from '../utils/client';
 import Footer from './Footer';
 import Script from 'next/script';
-import $ from 'jquery';
 
 
 
