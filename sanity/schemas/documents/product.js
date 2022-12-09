@@ -20,7 +20,7 @@ export default {
     },
     {
       name: 'onSalePrice',
-      title: 'Prix soldé',
+      title: 'Ancien prix',
       type: 'number',
     },
     {

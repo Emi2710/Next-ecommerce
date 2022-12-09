@@ -62,6 +62,7 @@ export default function Home() {
         countInStock: product.countInStock,
         slug: product.slug.current,
         price: product.price,
+        onSalePrice: product.onSalePrice,
         image: urlForThumbnail(product.image[0]),
         quantity,
       },

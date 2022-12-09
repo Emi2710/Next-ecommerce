@@ -190,6 +190,7 @@ export default function SearchScreen() {
         countInStock: product.countInStock,
         slug: product.slug.current,
         price: product.price,
+        onSalePrice: product.onSalePrice,
         image: urlForThumbnail(product.image),
         quantity,
       },
