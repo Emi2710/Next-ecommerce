@@ -11,6 +11,9 @@ export default async function handler(req, res) {
         mode: 'payment',
         payment_method_types: ['card'],
         billing_address_collection: 'auto',
+        shipping_options: [
+          { shipping_rate: 'shr_1MD8ORK4l2cU1TxbBPvjbWR6' }
+        ],
         line_items: req.body.orderItems.map((item) => {
           const img = item.image;
           const newImage = img.replace('image-', 'https://cdn.sanity.io/images/73zysq8l/production/').replace('-webp', '.webp');

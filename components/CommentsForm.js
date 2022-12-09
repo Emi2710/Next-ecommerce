@@ -39,6 +39,7 @@ export default function Form({ _id }) {
         body: JSON.stringify(data),
         type: 'application/json',
       })
+      
       setIsSubmitting(false)
       setHasSubmitted(true)
     } catch (err) {
@@ -89,6 +90,7 @@ export default function Form({ _id }) {
         <input {...register('_id')} type="hidden" name="_id" value={_id} />
         
           <TextField
+            id="name"
             name="name"
             label="Nom"
             {...register('name', { required: true })}
@@ -97,6 +99,7 @@ export default function Form({ _id }) {
           />
 
           <TextField
+            id="email"
             name="email"
             type="email"
             label="Email"
@@ -106,6 +109,7 @@ export default function Form({ _id }) {
           />
 
           <Select
+            id="rating"
             name="rating"
             label="Note sur 5"
             sx={{marginTop: '15px', }}
@@ -126,6 +130,7 @@ export default function Form({ _id }) {
         
           <textarea
             {...register('comment')}
+            id="comment"
             name="comment"
             label="Votre message"
             placeholder="Qu'avez pensé du produit ?"
