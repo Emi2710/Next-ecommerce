@@ -8,7 +8,7 @@ apiKey.apiKey = process.env.SENDINBLUE_API_SECRET_KEY;
 var apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
 const sendinblue = (sendSmtpEmail) => {
-  apiInstance.sendTransacEmail(sendSmtpEmail).then(function(data) {
+  apiInstance.sendTransacEmail(sendSmtpEmail).then(function() {
       return true;
     }, function(error) {
       console.error(error);
