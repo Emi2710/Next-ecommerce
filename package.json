@@ -2,10 +2,10 @@
   "name": "sanity-amazona",
   "private": true,
   "scripts": {
-    "dev": "node server.js",
+    "dev": "next dev",
     "build": "next build",
-    "staging": "NODE_ENV=staging next",
-    "start": "NODE_ENV=production node server.js"
+    "start": "next start",
+    "lint": "next lint"
     
   },
   "dependencies": {

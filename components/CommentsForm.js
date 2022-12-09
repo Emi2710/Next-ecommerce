@@ -8,7 +8,7 @@ import {
   MenuItem,
 } from '@mui/material';
 
-import { sendMail } from '../services/commentMail';
+//import { sendMail } from '../services/commentMail';
 
 
 export default function Form({ _id }) {
@@ -20,10 +20,10 @@ export default function Form({ _id }) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [hasSubmitted, setHasSubmitted] = useState(false)
   
-  async function handleOnClick (){
+  /*async function handleOnClick (){
         let response = await sendMail(formData);
         console.log(response);
-  }
+  }*/
 
   const {
     register,
@@ -133,7 +133,7 @@ export default function Form({ _id }) {
           ></textarea>
         {/* errors will return when field validation fails  */}
         {errors.exampleRequired && <span>Ce champs est obligatoire</span>}
-        <Button variant="contained" type="submit" fullWidth color="secondary" sx={{marginTop: '15px', }} onClick={ () => handleOnClick()}>
+        <Button variant="contained" type="submit" fullWidth color="secondary" sx={{marginTop: '15px', }} >
                 Envoyer
         </Button>
         
