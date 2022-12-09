@@ -161,8 +161,6 @@ function OrderScreen({ params }) {
 
   const handleCheckout = async () => {
 
-    //console.log(orderItems)
-
     const stripe = await getStripe();
 
     const response = await fetch('/api/keys/stripe', {

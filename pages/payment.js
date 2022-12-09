@@ -66,7 +66,7 @@ export default function PaymentScreen() {
                   control={<Radio />}
                 ></FormControlLabel>
                 <FormControlLabel
-                  label="Stripe"
+                  label="Carte bancaire"
                   value="Stripe"
                   control={<Radio />}
                 ></FormControlLabel>

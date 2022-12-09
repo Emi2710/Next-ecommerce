@@ -98,7 +98,7 @@ export default function LoginScreen() {
                   variant="outlined"
                   fullWidth
                   id="password"
-                  label="Password"
+                  label="Mot de passe"
                   inputProps={{ type: 'password' }}
                   error={Boolean(errors.password)}
                   helperText={

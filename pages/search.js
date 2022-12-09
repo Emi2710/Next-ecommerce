@@ -79,18 +79,7 @@ export default function SearchScreen() {
     };
     fetchCategories();
 
-    /*const fetchBrands = async () => {
-      try {
-        //const { data } = await axios.get(`/api/products/categories`);
-        const { brandData } = await axios.get(`/api/products/brands`);
-        //setCategories(data);
-        setBrands(brandData);
-        console.log(brandData)
-      } catch (err) {
-        console.log(err.message);
-      }
-    };
-    fetchBrands();*/
+   
 
     const fetchData = async () => {
       try {

@@ -102,14 +102,14 @@ export default function ShippingScreen() {
                   variant="outlined"
                   fullWidth
                   id="address"
-                  label="Addresse"
+                  label="Adresse"
                   inputProps={{ type: 'address' }}
                   error={Boolean(errors.address)}
                   helperText={
                     errors.address
                       ? errors.address.type === 'minLength'
                         ? 'Adresse invalide'
-                        : 'Addresse obligatoire'
+                        : 'Adresse obligatoire'
                       : ''
                   }
                   {...field}
