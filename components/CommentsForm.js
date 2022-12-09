@@ -133,12 +133,11 @@ export default function Form({ _id }) {
           ></textarea>
         {/* errors will return when field validation fails  */}
         {errors.exampleRequired && <span>Ce champs est obligatoire</span>}
-        <Button variant="contained" type="submit" fullWidth color="secondary" sx={{marginTop: '15px', }} onClick={handleOnClick()}>
+        <Button variant="contained" type="submit" fullWidth color="secondary" sx={{marginTop: '15px', }} onClick={ () => handleOnClick()}>
                 Envoyer
         </Button>
         
       </form>
-      <button>Send me this url</button>
     </>
     
   )
