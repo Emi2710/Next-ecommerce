@@ -29,7 +29,7 @@ import { getError } from '../../utils/error';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import getStripe from '../../lib/getStripe';
-import toast from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 
 
 
