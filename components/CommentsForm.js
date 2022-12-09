@@ -8,11 +8,22 @@ import {
   MenuItem,
 } from '@mui/material';
 
+import { sendMail } from '../services/commentMail';
+
+
 export default function Form({ _id }) {
+
+  
+  
+
   const [formData, setFormData] = useState()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [hasSubmitted, setHasSubmitted] = useState(false)
   
+  async function handleOnClick (){
+        let response = await sendMail(formData);
+        console.log(response);
+  }
 
   const {
     register,
@@ -39,6 +50,8 @@ export default function Form({ _id }) {
     return <h3>En cours de chargement…</h3>
   }
   if (hasSubmitted) {
+        
+    
     return (
       <>
       <Typography component="h3" variant="h3">
@@ -52,6 +65,9 @@ export default function Form({ _id }) {
             Email: {formData.email}
           </li>
           <li>
+            Note: {formData.rating}
+          </li>
+          <li>
             Commentaire: {formData.comment}
           </li>
         </ul>
@@ -60,65 +76,70 @@ export default function Form({ _id }) {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="review-form-wrapper"
-      disabled
-      
-    >
-      <Typography component="h1" variant="h1">
-        Laisser un avis
-      </Typography>
-      <input {...register('_id')} type="hidden" name="_id" value={_id} />
-      
-        <TextField
-          name="name"
-          label="Nom"
-          {...register('name', { required: true })}
-          placeholder="Nom prénom"
-          sx={{marginTop: '15px', }}
-        />
-
-        <TextField
-          name="email"
-          type="email"
-          label="Email"
-          sx={{marginTop: '15px', }}
-          {...register('email', { required: true })}
-          placeholder="adresse@gmail.com"
-        />
-
-        <Select
-          name="rating"
-          label="Note sur 5"
-          sx={{marginTop: '15px', }}
-          placeholder='5'
-          {...register('rating', { required: true })} 
-          
-        >
-          <MenuItem value={1}>1</MenuItem>
-          <MenuItem value={2}>2</MenuItem>
-          <MenuItem value={3}>3</MenuItem>
-          <MenuItem value={4}>4</MenuItem>
-          <MenuItem value={5}>5</MenuItem>
-        </Select>
-
+    <>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="review-form-wrapper"
+        disabled
         
-     
+      >
+        <Typography component="h1" variant="h1">
+          Laisser un avis
+        </Typography>
+        <input {...register('_id')} type="hidden" name="_id" value={_id} />
+        
+          <TextField
+            name="name"
+            label="Nom"
+            {...register('name', { required: true })}
+            placeholder="Nom prénom"
+            sx={{marginTop: '15px', }}
+          />
+
+          <TextField
+            name="email"
+            type="email"
+            label="Email"
+            sx={{marginTop: '15px', }}
+            {...register('email', { required: true })}
+            placeholder="adresse@gmail.com"
+          />
+
+          <Select
+            name="rating"
+            label="Note sur 5"
+            sx={{marginTop: '15px', }}
+            placeholder='5'
+            {...register('rating', { required: true })} 
+            
+          >
+            <MenuItem value={1}>1</MenuItem>
+            <MenuItem value={2}>2</MenuItem>
+            <MenuItem value={3}>3</MenuItem>
+            <MenuItem value={4}>4</MenuItem>
+            <MenuItem value={5}>5</MenuItem>
+          </Select>
+
+          
       
-      
-        <textarea
-          {...register('comment')}
-          name="comment"
-          label="Votre message"
-          placeholder="Qu'avez pensé du produit ?"
-          className="review-textarea"
-        ></textarea>
-      {/* errors will return when field validation fails  */}
-      {errors.exampleRequired && <span>Ce champs est obligatoire</span>}
-      <Button variant="contained" type="submit" fullWidth color="secondary" sx={{marginTop: '15px', }}>
-              Envoyer
-      </Button>
-    </form>
+        
+        
+          <textarea
+            {...register('comment')}
+            name="comment"
+            label="Votre message"
+            placeholder="Qu'avez pensé du produit ?"
+            className="review-textarea"
+          ></textarea>
+        {/* errors will return when field validation fails  */}
+        {errors.exampleRequired && <span>Ce champs est obligatoire</span>}
+        <Button variant="contained" type="submit" fullWidth color="secondary" sx={{marginTop: '15px', }} onClick={handleOnClick()}>
+                Envoyer
+        </Button>
+        
+      </form>
+      <button>Send me this url</button>
+    </>
+    
   )
 }

@@ -41,11 +41,6 @@ import Script from 'next/script';
 
 export default function Layout({ title, description, children }) {
 
-
-
-
-
-
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const { cart, userInfo } = state;
