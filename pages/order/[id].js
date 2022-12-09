@@ -356,7 +356,7 @@ function OrderScreen({ params }) {
                             ></PayPalButtons>
                         </Box>
                       )}
-                      {paymentMethod == 'Stripe' && (
+                      {paymentMethod == 'Carte bancaire' && (
                         <Box sx={classes.fullWidth}>
                             <Button
                               variant="contained"
