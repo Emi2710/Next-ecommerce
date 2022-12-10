@@ -69,7 +69,12 @@ export default {
       type: 'datetime',
     },
     {
-      title: 'Livré ?',
+      title: 'Commande envoyée ?',
+      name: 'isSent',
+      type: 'boolean',
+    },
+    {
+      title: 'Commande livrée ?',
       name: 'isDelivered',
       type: 'boolean',
     },
