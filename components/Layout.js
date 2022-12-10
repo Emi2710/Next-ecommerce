@@ -228,6 +228,16 @@ export default function Layout({ title, description, children }) {
                     >
                       Historique de commandes
                     </MenuItem>
+                    {userInfo.isAdmin ? (
+                     <MenuItem
+                      onClick={(e) =>
+                        loginMenuCloseHandler(e, '/admin')
+                      }
+                    >
+                      Voir toutes les commandes
+                    </MenuItem> 
+                    ) : ''}
+                    
                     <MenuItem onClick={logoutClickHandler}>Déconnexion</MenuItem>
                   </Menu>
                 </>
