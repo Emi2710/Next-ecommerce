@@ -1,22 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Layout from '../components/Layout';
-import { useForm, Controller } from 'react-hook-form';
-import NextLink from 'next/link';
-import Form from '../components/Form';
-import {
-  Button,
-  Link,
-  List,
-  ListItem,
-  TextField,
-  Typography,
-} from '@mui/material';
-import { useSnackbar } from 'notistack';
-import axios from 'axios';
-import { Store } from '../utils/Store';
-import { useRouter } from 'next/router';
-import jsCookie from 'js-cookie';
-import { getError } from '../utils/error';
+
 
 const resetPassword = () => {
 
