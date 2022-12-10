@@ -267,7 +267,7 @@ export default function Layout({ title, description, children }) {
           </Toolbar>
         </AppBar> 
         <Box sx={{justifyContent: 'space-around', alignItems: 'center', display: { xs: 'flex' }}}>
-          <Box sx={classes.translationSelector}>
+          <Box sx={classes.translationSelector} className="translation-selector">
                     <div id="google_translate_element"></div>
                     <Script type="text/javascript" id="google-script-function">
                       {`function googleTranslateElementInit() {

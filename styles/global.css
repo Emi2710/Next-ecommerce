@@ -87,6 +87,16 @@ button.add-to-cart-hover:hover {
     .review-form-wrapper {
         width: 100%;
     }
+    .translation-selector {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 375px) {
+
+    .translation-selector {
+        display: flex;
+    }
 }
 
 @media screen and (min-width: 680px) {
@@ -119,7 +129,8 @@ body {
     border-radius: 3px;
     padding: 6px 8px;
     margin-top: 18px;
-    max-width: 90px;
+    max-width: 70px;
+    
 }
 
 .goog-logo-link {

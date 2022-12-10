@@ -136,7 +136,7 @@ const classes = {
     margin: '15px'
   },
   translationSelector: {
-    display: {xs: 'flex'},
+    
     position: {sm: 'absolute'},
     top: {sm: '25px'},
     right: {sm: '28%'}
