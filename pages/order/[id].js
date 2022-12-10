@@ -72,6 +72,7 @@ function OrderScreen({ params }) {
     totalPrice,
     isPaid,
     paidAt,
+    isSent,
     isDelivered,
     deliveredAt,
   } = order;
@@ -196,6 +197,15 @@ function OrderScreen({ params }) {
         Merci pour votre commande !
       </Typography>
       : ''}
+      {isDelivered ? (
+        <Typography>Votre commande a été livrée.</Typography>
+      ) : isSent ? (
+        <Typography>Votre commande est actuellement en cours de livraison.</Typography>
+      ) : isPaid ? (
+        <Typography>Votre commande a bien été prise en compte et est en cours de préparation.</Typography>
+      ) : (
+        <Typography>Veuillez finaliser le paiement afin de valider votre commmande.</Typography>
+      )}
 
       {loading ? (
         <CircularProgress />
