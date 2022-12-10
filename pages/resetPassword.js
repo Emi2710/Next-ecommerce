@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Layout from '../components/Layout';
 
 
-const resetPassword = () => {
+function ResetPassword () {
 
   const [values, setValues] = useState({
     name: "",
@@ -69,4 +69,4 @@ const resetPassword = () => {
   )
 }
 
-export default resetPassword
+export default ResetPassword
