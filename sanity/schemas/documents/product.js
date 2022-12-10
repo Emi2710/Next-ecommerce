@@ -1,11 +1,11 @@
 export default {
   name: 'product',
-  title: 'Product',
+  title: 'Produits',
   type: 'document',
   fields: [
     {
       name: 'name',
-      title: 'Name',
+      title: 'Nom',
       type: 'string',
     },
     {
@@ -54,9 +54,29 @@ export default {
       },
     },
     {
+      title: 'Marque',
       name: 'brand',
-      title: 'Brand',
       type: 'string',
+      options: {
+        list: [
+          {title: 'Brigmton', value: 'Brigmton'},
+          {title: 'Cecotec', value: 'Cecotec'},
+          {title: 'Genérica', value: 'Genérica'},
+          {title: 'Joyor', value: 'Joyor'},
+          {title: 'Kaabo', value: 'Kaabo'},
+          {title: 'Kugoo', value: 'Kugoo'},
+          {title: 'Ninebot', value: 'Ninebot'},
+          {title: 'Ovex', value: 'Ovex'},
+          {title: 'SkateFlash', value: 'SkateFlash'},
+          {title: 'Smartgyro', value: 'Smartgyro'},
+          {title: 'Xiaomi', value: 'Xiaomi'},
+          {title: 'Zero', value: 'Zero'},
+          {title: 'Dualtron', value: 'Dualtron'},
+          {title: 'Vsett', value: 'Vsett'},
+          
+        ], 
+              },
+
     },
     {
       title: 'Catégories',
@@ -110,12 +130,12 @@ export default {
     },
     {
       name: 'rating',
-      title: 'Rating',
+      title: 'Note',
       type: 'number',
     },
     {
       name: 'countInStock',
-      title: 'CountInStock',
+      title: 'Quantité en stock',
       type: 'number',
     },
     {
@@ -134,7 +154,6 @@ export default {
 
   initialValue: {
     rating: 0
-  }
-  
+  } 
 
 };

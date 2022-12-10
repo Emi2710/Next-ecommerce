@@ -119,11 +119,14 @@ export default function LoginScreen() {
             </Button>
           </ListItem>
           <ListItem>
-            Pas de compte? {' '}
             <NextLink href={`/register?redirect=${redirect || '/'}`} passHref>
-              <Link> Inscrivez-vous</Link>
+              <Link sx={{color: '#999999', marginRight: '15px'}}>- Créer un compte </Link>
+            </NextLink>
+            <NextLink href="/resetPassword" passHref>
+              <Link sx={{color: '#999999'}}>- Mot de passe oublié </Link>
             </NextLink>
           </ListItem>
+          
         </List>
       </Form>
     </Layout>

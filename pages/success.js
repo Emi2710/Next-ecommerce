@@ -1,8 +1,23 @@
+import {
+  Box,
+  Alert,
+  Button,
+  CircularProgress,
+  Grid,
+  List,
+  ListItem,
+  MenuItem,
+  Rating,
+  Select,
+  Typography,
+} from '@mui/material';
+
 import React, { useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import axios from 'axios';
 import { Store } from '../utils/Store';
+import Layout from '../components/Layout';
 
 
 const Success = () => {
@@ -36,24 +51,18 @@ const Success = () => {
     });
   
   return (
-    <div>
-      <div>
+    <Layout>
+      <Box sx={{textAlign: 'center'}}>
         
-        <h2>Thank you for your order!</h2>
-        <p>Check your email inbox for the receipt.</p>
-        <p>
-          If you have any questions, please email
-          <a href="mailto:order@example.com">
-            order@example.com
-          </a>
-        </p>
+        <Typography component="h2" variant="h2">Merci pour votre commande !</Typography>
+        <Typography>Votre commande a bien été prise en compte et est en actuellement en cours de préparation.<br /> Vous serez informé de son avancement dans votre espace personnel.</Typography>
         <Link href="/">
-          <button type="button" width="300px">
-            Continue Shopping
-          </button>
+          <Button type="button" variant="outlined" sx={{color: "#324D67", border: '1px solid #324D67', marginTop: '25px'}}>
+            Continuer le shopping
+          </Button>
         </Link>
-      </div>
-    </div>
+      </Box>
+    </Layout>
   )
 }
 

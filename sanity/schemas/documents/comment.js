@@ -1,18 +1,18 @@
 export default {
     name: 'comment',
-    title: 'Comment',
+    title: 'Commentaires et avis',
     type: 'document',
     fields: [
       {
         name: 'name',
-        title: 'Name',
+        title: 'Nom',
         type: 'string',
       },
       {
         name: 'approved',
-        title: 'Approved',
+        title: 'Approuvé',
         type: 'boolean',
-        description: 'Comments will not be shown without approved!'
+        description: "Les commentaires ne seront pas affichés s'ils ne sont pas approuvés!"
       },
       {
         name: 'email',
@@ -21,12 +21,12 @@ export default {
       },
       {
         name: 'rating',
-        title: 'Rating',
+        title: 'Note sur 5',
         type: 'number',
       },
       {
         name: 'comment',
-        title: 'Comment',
+        title: 'Commentaire',
         type: 'text',
       },
       {

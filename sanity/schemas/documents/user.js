@@ -1,11 +1,11 @@
 export default {
   name: 'user',
-  title: 'User',
+  title: 'Utilisateurs',
   type: 'document',
   fields: [
     {
       name: 'name',
-      title: 'Name',
+      title: 'Nom',
       type: 'string',
     },
 
@@ -16,12 +16,12 @@ export default {
     },
     {
       name: 'password',
-      title: 'Password',
+      title: 'Mot de passe',
       type: 'string',
     },
     {
       name: 'isAdmin',
-      title: 'Is Admin',
+      title: 'Admin ?',
       type: 'boolean',
     },
   ],

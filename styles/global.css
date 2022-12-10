@@ -27,7 +27,7 @@ button.add-to-cart-hover:hover {
 
 .product-detail-image {
     border-radius: 15px;
-    background-color: #ebebeb;
+    background-color: rgba(235, 235, 235, 0.685);
 
     width: 75%;
     height: 75%;
