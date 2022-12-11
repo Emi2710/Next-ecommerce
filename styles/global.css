@@ -19,6 +19,7 @@ a {
 
 .list-style-none {
     list-style-type: none;
+    padding-left: 12px;
 }
 
 button.add-to-cart-hover:hover {
@@ -154,3 +155,4 @@ body {
     background: none !important;
     box-shadow: none !important;
 }
+

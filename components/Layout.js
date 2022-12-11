@@ -1,5 +1,6 @@
 import Image from 'next/image';
-import logo from '../assets/logo.svg';
+import logo from '../assets/logo-escootch.svg';
+import cartIcon from '../assets/cart.svg';
 
 import { createTheme } from '@mui/material/styles';
 import {
@@ -66,6 +67,15 @@ export default function Layout({ title, description, children }) {
         display: 'flex',
         justifyContent: 'center'
       },
+      h3: {
+        fontSize: '1.4rem',
+        fontWeight: 600,
+        margin: '1rem 0',
+        color: "#324D67",
+        
+      },
+      
+
     },
 
     palette: {
@@ -255,10 +265,10 @@ export default function Layout({ title, description, children }) {
                         color="secondary"
                         badgeContent={cart.cartItems.length}
                       >
-                        Panier
+                        <Image src={cartIcon} alt="Icone de panier" width='25px' height='25px'/>
                       </Badge>
                     ) : (
-                      'Panier'
+                      <Image src={cartIcon} alt="Icone de panier" width='25px' height='25px'/>
                     )}
                   </Typography>
                 </Link>
@@ -378,14 +388,14 @@ export default function Layout({ title, description, children }) {
             {children}
           </Box>
         </Container>
-        <Box component="footer" sx={classes.footer}>
-          <Box sx={{display: 'flex', justifyContent: 'space-around', alignItems: 'center', flexWrap: 'wrap'}}>
+        <Box component="footer" sx={classes.footer} className='footer'>
+          <Box sx={{display: {sm: 'flex'}, justifyContent: 'space-around', alignItems: 'center'}}>
             <Box sx={{marginLeft: '50px', flexDirection: 'column', alignItems: 'center', display: {xs: 'none', md: 'flex'}}}>
               <Image src={logo} alt="Logo e-scoot" width='220px' />
             </Box>
 
             <Box sx={{textAlign: 'left'}}>
-                <Typography component='h2' variant="h2">Informations</Typography>
+                <Typography component='h3' variant="h3" sx={{marginTop: '35px'}}>Informations</Typography>
                 
                 {footer?.map((item) => (
                   <div key={item.slug}>
@@ -397,7 +407,7 @@ export default function Layout({ title, description, children }) {
                    
 
             <Box sx={{textAlign: 'left'}}>
-                  <Typography component='h2' variant="h2">Catégories principales</Typography>
+                  <Typography component='h3' variant="h3" sx={{marginTop: '35px'}}>Catégories principales</Typography>
                    
                      {categories.map((category) => (
                      <ul className='list-style-none' key={category}> 
@@ -415,7 +425,7 @@ export default function Layout({ title, description, children }) {
              
           </Box>
           
-          <Typography sx={{marginTop: '50px'}}>Tout droits réservés. E-scoot.</Typography>
+          <Typography sx={{marginTop: '50px'}}>Tout droits réservés. EScootch.</Typography>
         </Box>
       </ThemeProvider>
 
