@@ -134,17 +134,6 @@ const [anchorElPieces, setAnchorElPieces] = useState(null);
   });
 
 
-  const [anchorElNav, setAnchorElNav] = useState(null);
-
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-
 
   const [anchorEl, setAnchorEl] = useState(null);
   const loginMenuCloseHandler = (e, redirect) => {
@@ -383,7 +372,7 @@ const [anchorElPieces, setAnchorElPieces] = useState(null);
                               </NextLink>
                               
                             {roues.map((roue) => ( 
-                              <NextLink href={`search?category=Roues&rouesSubCategory=${roue}`}>
+                              <NextLink href={`search?category=Roues&rouesSubCategory=${roue}`} key={roue}>
                                 <li>{roue}</li>  
                               </NextLink>   
                               
@@ -403,7 +392,7 @@ const [anchorElPieces, setAnchorElPieces] = useState(null);
                               </NextLink>
                               
                             {pieces.map((piece) => ( 
-                              <NextLink href={`search?category=${categories[1]}&piecesSubCategory=${piece}`}>
+                              <NextLink href={`search?category=${categories[1]}&piecesSubCategory=${piece}`} key={piece}>
                                 <li>{piece}</li>
                               </NextLink>    
                             ))}    
@@ -454,7 +443,7 @@ const [anchorElPieces, setAnchorElPieces] = useState(null);
                           >
                             <NextLink href={`search?category=${categories[0]}`}><MenuItem onClick={handlePiecesClose}>Voir tout</MenuItem></NextLink>
                             {roues.map((roue) => (
-                              <NextLink href={`search?category=Roues&rouesSubCategory=${roue}`}>
+                              <NextLink href={`search?category=Roues&rouesSubCategory=${roue}`} key={roue}>
                                 <MenuItem onClick={handleRouesClose}>{roue}</MenuItem>
                               </NextLink>
                             ))}
@@ -493,7 +482,7 @@ const [anchorElPieces, setAnchorElPieces] = useState(null);
                           >
                             <NextLink href={`search?category=${categories[1]}`}><MenuItem onClick={handlePiecesClose}>Voir tout</MenuItem></NextLink>
                             {pieces.map((piece) => (
-                              <NextLink href={`search?category=${categories[1]}&piecesSubCategory=${piece}`}>
+                              <NextLink href={`search?category=${categories[1]}&piecesSubCategory=${piece}`} key={piece}>
                                   <MenuItem onClick={handlePiecesClose}>{piece}</MenuItem> 
                               </NextLink>
                             ))}

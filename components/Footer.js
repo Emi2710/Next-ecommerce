@@ -1,6 +1,5 @@
 import NextLink from 'next/link';
 import React from 'react';
-import { useRouter } from 'next/router';
 
 export default function Footer ({footer}) {
 
