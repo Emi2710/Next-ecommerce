@@ -22,7 +22,7 @@ const classes = {
     textAlign: 'left',
     backgroundColor: "#D9D9D9",
     padding: '25px',
-    width: '100vw'
+    width: '100vw',
   },
   appbar: {
     backgroundColor: '#fff',
@@ -84,7 +84,8 @@ const classes = {
   
   categories: {
     display: "flex",
-    justifyContent: "space-around",
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: "#324D67",
     color: "#fff",
     overflowX: 'auto',

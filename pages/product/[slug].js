@@ -28,6 +28,8 @@ import BestProductItem from '../../components/accueil/bestProductItem';
 
 export default function ProductScreen(props) {
 
+  
+
   const [index, setIndex] = useState(0);
 
   const router = useRouter();
@@ -254,8 +256,4 @@ export function getServerSideProps(context) {
   };
 }
 
-export function getComments() {
-    
-
-}
 

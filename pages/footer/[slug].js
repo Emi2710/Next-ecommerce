@@ -13,6 +13,7 @@ import {
 
 export default function Footer (props) {
 
+
   const { slug } = props;
 
   const [state, setState] = useState({
@@ -22,6 +23,7 @@ export default function Footer (props) {
   });
   const { footer, loading, error } = state;
 
+  
   useEffect(() => {
     
     const fetchData = async () => {
@@ -32,13 +34,18 @@ export default function Footer (props) {
           { slug }
         );
         
+        
         setState({ ...state, footer, loading: false });
+
+        
+
       } catch (err) {
         setState({ ...state, error: err.message, loading: false });
       }
     };
     
     fetchData();
+    
   }, []);
 
 

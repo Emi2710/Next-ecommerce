@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import logo from '../assets/logo-escootch.svg';
 import cartIcon from '../assets/cart.svg';
+import dropdown from '../assets/dropdownsvg.svg';
+import dpd from '../assets/dpdblack.svg';
 
 import { createTheme } from '@mui/material/styles';
 import {
@@ -13,8 +15,6 @@ import {
   IconButton,
   InputBase,
   Link,
-  ListItem,
-  ListItemText,
   Menu,
   MenuItem,
   ThemeProvider,
@@ -38,9 +38,53 @@ import client from '../utils/client';
 import Footer from './Footer';
 import Script from 'next/script';
 
+import roues from '../utils/subCategories/roues';
+import pieces from '../utils/subCategories/pieces';
+
+
+
 
 
 export default function Layout({ title, description, children }) {
+
+
+const [anchorElRoues, setAnchorElRoues] = useState(null);
+  const openRoues = Boolean(anchorElRoues);
+  const handleRouesClick = (event) => {
+    setAnchorElRoues(event.currentTarget);
+  };
+  const handleRouesClose = () => {
+    setAnchorElRoues(null);
+  };
+
+const [anchorElPieces, setAnchorElPieces] = useState(null);
+  const openPieces = Boolean(anchorElPieces);
+  const handlePiecesClick = (event) => {
+    setAnchorElPieces(event.currentTarget);
+  };
+  const handlePiecesClose = () => {
+    setAnchorElPieces(null);
+  };
+
+  const [mobileRoues, setMobileRoues] = useState(false);
+
+  function handleMobileRoues () {
+    setMobileRoues(!mobileRoues)
+  }
+
+  const [mobilePieces, setMobilePieces] = useState(false);
+
+  function handleMobilePieces () {
+    setMobilePieces(!mobilePieces)
+  }
+
+  const [mobileNav, setMobileNav] = useState(false);
+
+  function handleMobileNav () {
+    setMobileNav(!mobileNav)
+  }
+
+
 
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
@@ -320,64 +364,160 @@ export default function Layout({ title, description, children }) {
           </Box> 
 
           <Box sx={{display: { xs: 'flex', sm: 'none' }}}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon color="secondary"/>
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              
-            >
-              {categories.map((category) => (
-                <MenuItem key={category} onClick={handleCloseNavMenu}>
-                  <NextLink 
-                    key={category}
-                    href={`/search?category=${category}`}
-                    passHref
-                  >
-                    <Typography textAlign="center">{category}</Typography>  
-                  </NextLink>
-                  
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box> 
+            
+              <MenuIcon color='secondary' onClick={handleMobileNav} className='cursor-pointer' />
+            
+          </Box>
+           
+        </Box>
+        <Box>
+          {mobileNav? (
+          
+          <ul className="list-style-none mobile-nav">
+              <li className='display-flex1' onClick={handleMobileRoues}>{categories[0]} <Image src ={dpd} width="12px" className='margin-left'/></li>
+                      {mobileRoues? (
+                        <> 
+                            <ul className='list-style-none mobile-subcategory-nav'>
+                              <NextLink href='search?category=Roues'>
+                                <li>Tout</li>  
+                              </NextLink>
+                              
+                            {roues.map((roue) => ( 
+                              <NextLink href={`search?category=Roues&rouesSubCategory=${roue}`}>
+                                <li>{roue}</li>  
+                              </NextLink>   
+                              
+                            ))}    
+                            </ul>  
+                        </>
+                          
+                      ) : ''}
+                      
+                      
+              <li className='display-flex2' onClick={handleMobilePieces}>{categories[1]} <Image src ={dpd} width="12px" className='margin-left'/></li>
+                        {mobilePieces? (
+                        <> 
+                            <ul className='list-style-none mobile-subcategory-nav'>
+                              <NextLink href={`search?category=${categories[1]}`}>
+                                <li>Tout</li>  
+                              </NextLink>
+                              
+                            {pieces.map((piece) => ( 
+                              <NextLink href={`search?category=${categories[1]}&piecesSubCategory=${piece}`}>
+                                <li>{piece}</li>
+                              </NextLink>    
+                            ))}    
+                            </ul>  
+                        </>
+                          
+                      ) : ''}
+
+              <NextLink href={`search?category=${categories[2]}`}>
+                <li>{categories[2]} </li>
+              </NextLink>
+              <NextLink href={`search?category=${categories[3]}`}>
+                <li>{categories[3]}</li>
+              </NextLink>
+          </ul>
+
+          ) : ''}
+          
         </Box>
         
-        <Box sx={classes.categories} className="menu-categories">
+        <Box sx={classes.categories}>
           
-              {categories.map((category) => (
+                  
+                    <Box>
+                      
+                          <Typography 
+                            primary={categories[0]} 
+                            sx={{padding: '15px 25px', cursor: 'pointer', display: 'flex', alignItems: 'center'}}
+                            id="basic-button-roues"
+                            aria-controls={openRoues ? 'basic-menu-roues' : undefined}
+                            aria-haspopup="true"
+                            aria-expanded={openRoues ? 'true' : undefined}
+                            onClick={handleRouesClick}
+                          >
+
+                              {categories[0]}
+                              <Image src={dropdown} width='25px' />
+
+                          </Typography> 
+                          <Menu
+                            id="basic-menu-roues"
+                            anchorEl={anchorElRoues}
+                            open={openRoues}
+                            onClose={handleRouesClose}
+                            MenuListProps={{
+                              'aria-labelledby': 'basic-button-roues',
+                            }}
+                          >
+                            <NextLink href={`search?category=${categories[0]}`}><MenuItem onClick={handlePiecesClose}>Voir tout</MenuItem></NextLink>
+                            {roues.map((roue) => (
+                              <NextLink href={`search?category=Roues&rouesSubCategory=${roue}`}>
+                                <MenuItem onClick={handleRouesClose}>{roue}</MenuItem>
+                              </NextLink>
+                            ))}
+                            
+                          </Menu>  
+                      
+                      
+                    </Box>
+                    
+                  
+
+                  <Box>
+                      
+                          <Typography 
+                            primary={categories[1]} 
+                            sx={{padding: '', cursor: 'pointer', display: 'flex', alignItems: 'center'}}
+                            id="basic-button-pieces"
+                            aria-controls={openPieces ? 'basic-menu-pieces' : undefined}
+                            aria-haspopup="true"
+                            aria-expanded={openPieces ? 'true' : undefined}
+                            onClick={handlePiecesClick}
+                          >
+
+                              {categories[1]}
+                              <Image src={dropdown} width='25px' />
+
+                          </Typography> 
+                          <Menu
+                            id="basic-menu-pieces"
+                            anchorEl={anchorElPieces}
+                            open={openPieces}
+                            onClose={handlePiecesClose}
+                            MenuListProps={{
+                              'aria-labelledby': 'basic-button-pieces',
+                            }}
+                          >
+                            <NextLink href={`search?category=${categories[1]}`}><MenuItem onClick={handlePiecesClose}>Voir tout</MenuItem></NextLink>
+                            {pieces.map((piece) => (
+                              <NextLink href={`search?category=${categories[1]}&piecesSubCategory=${piece}`}>
+                                  <MenuItem onClick={handlePiecesClose}>{piece}</MenuItem> 
+                              </NextLink>
+                            ))}
+                            
+                          </Menu>  
+                      
+                      
+                    </Box>
+
                   <NextLink
-                    key={category}
-                    href={`/search?category=${category}`}
+                    key={categories[2]}
+                    href={`/search?category=${categories[2]}`}
                     passHref
                   >
-                    <ListItem
-                      button
-                      component="a"
-                    >
-                      <ListItemText primary={category} sx={{display: "flex", justifyContent: "space-around",}}></ListItemText>
-                    </ListItem>
+                    <Typography primary={categories[2]} sx={{padding: '15px 25px', cursor: 'pointer'}}>{categories[2]}</Typography>
                   </NextLink>
-                ))}
+
+                  <NextLink
+                    key={categories[3]}
+                    href={`/search?category=${categories[3]}`}
+                    passHref
+                  >
+                    <Typography primary={categories[3]} sx={{padding: '15px 25px', cursor: 'pointer'}}>{categories[3]}</Typography>
+                  </NextLink>
                 
             
             
@@ -389,8 +529,8 @@ export default function Layout({ title, description, children }) {
           </Box>
         </Container>
         <Box component="footer" sx={classes.footer} className='footer'>
-          <Box sx={{display: {sm: 'flex'}, justifyContent: 'space-around', alignItems: 'center'}}>
-            <Box sx={{marginLeft: '50px', flexDirection: 'column', alignItems: 'center', display: {xs: 'none', md: 'flex'}}}>
+          <Box sx={{display: {sm: 'flex'}, justifyContent: 'space-around'}}>
+            <Box sx={{marginLeft: '50px', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', display: {xs: 'none', md: 'flex'}}}>
               <Image src={logo} alt="Logo e-scoot" width='220px' />
             </Box>
 
@@ -412,7 +552,7 @@ export default function Layout({ title, description, children }) {
                      {categories.map((category) => (
                      <ul className='list-style-none' key={category}> 
                      <NextLink href={`/search?category=${category}`}>
-                      <li key={category}>{category}</li> 
+                      <li key={category} className='cursor-pointer'>{category}</li> 
                      </NextLink>
                       
                      </ul> 
