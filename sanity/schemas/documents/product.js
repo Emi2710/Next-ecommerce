@@ -9,6 +9,11 @@ export default {
       type: 'string',
     },
     {
+      name: 'seoDescription',
+      title: 'Description SEO',
+      type: 'string',
+    },
+    {
       name: 'price',
       title: 'Prix',
       type: 'number',

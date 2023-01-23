@@ -52,7 +52,7 @@ export default function ShippingScreen() {
     router.push('/payment');
   };
   return (
-    <Layout title="Shipping Address">
+    <Layout title="Adresse de livraison">
       <CheckoutWizard activeStep={1}></CheckoutWizard>
       <Form onSubmit={handleSubmit(submitHandler)}>
         <Typography component="h1" variant="h1">

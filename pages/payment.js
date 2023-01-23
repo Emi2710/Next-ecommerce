@@ -45,7 +45,7 @@ export default function PaymentScreen() {
     }
   };
   return (
-    <Layout title="Payment Method">
+    <Layout title="Méthode de paiement">
       <CheckoutWizard activeStep={2}></CheckoutWizard>
       <Form onSubmit={submitHandler}>
         <Typography component="h1" variant="h1">

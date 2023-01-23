@@ -202,7 +202,7 @@ export default function SearchScreen() {
   };
 
   return (
-    <Layout title="search">
+    <Layout title="Recherche">
       <Grid sx={classes.section} container spacing={2}>
         <Grid item md={3}>
           <List>

@@ -55,7 +55,7 @@ function ProfileScreen() {
     }
   };
   return (
-    <Layout title="Profile">
+    <Layout title="Profil">
       <Typography component="h1" variant="h1">
         Profil
       </Typography>

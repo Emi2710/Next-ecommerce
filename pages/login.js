@@ -49,7 +49,7 @@ export default function LoginScreen() {
     }
   };
   return (
-    <Layout title="Login">
+    <Layout title="Connexion">
       <Form onSubmit={handleSubmit(submitHandler)}>
         <Typography component="h1" variant="h1">
           Connexion

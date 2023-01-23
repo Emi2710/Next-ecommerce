@@ -62,7 +62,7 @@ function OrderHistoryScreen() {
     fetchOrders();
   }, [router, userInfo]);
   return (
-    <Layout title="Order History">
+    <Layout title="Historique de commmandes">
       <Typography component="h1" variant="h1">
         Historique de commandes
       </Typography>

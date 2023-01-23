@@ -186,7 +186,7 @@ function OrderScreen({ params }) {
   }
 
   return (
-    <Layout title={`Order ${orderId}`}>
+    <Layout title={`Commande ${orderId}`}>
 
 
       <Typography component="h1" variant="h1">

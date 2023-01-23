@@ -25,6 +25,8 @@ import {PortableText as BasePortableText} from '@portabletext/react';
 import Comments from '../../components/Comments';
 import CommentsForm from '../../components/CommentsForm';
 import BestProductItem from '../../components/accueil/bestProductItem';
+import Head from 'next/head';
+
 
 export default function ProductScreen(props) {
 
@@ -125,6 +127,16 @@ export default function ProductScreen(props) {
         <Alert variant="error">{error}</Alert>
       ) : (
         <Box>
+          <Head>
+            <title>
+              {product.name}
+            </title>
+            <meta
+              name="description"
+              content={`${product.seoDescription}`}
+              key="desc"
+            />
+          </Head>
           <Box sx={classes.section}>
             <NextLink href="/" passHref>
               <Link>
@@ -222,6 +234,7 @@ export default function ProductScreen(props) {
             
             
             <Comments comments={comments} />
+            
             <CommentsForm _id={product._id} />
 
           </Box>  
@@ -255,5 +268,7 @@ export function getServerSideProps(context) {
     props: { slug: context.params.slug },
   };
 }
+
+
 
 

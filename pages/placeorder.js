@@ -93,7 +93,7 @@ function PlaceOrderScreen() {
     }
   };
   return (
-    <Layout title="Place Order">
+    <Layout title="Votre commande">
       <CheckoutWizard activeStep={3}></CheckoutWizard>
       <Typography component="h1" variant="h1">
         Votre commande

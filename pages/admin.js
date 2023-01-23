@@ -35,7 +35,7 @@ function Admin () {
   }, []);
 
   return (
-    <Layout title="Order History">
+    <Layout title="Historique de commandes">
       <Typography component="h1" variant="h1">
         Historique de commandes
       </Typography>

@@ -25,7 +25,7 @@ function ResetPassword () {
     });
   };
   return (
-    <Layout title="Changer mot de passe">
+    <Layout title="Réinitialisation mot de passe">
         <h2>Next.js Sendgrid form submission</h2>
       <div className="container">
         <form onSubmit={handleSubmit}>

@@ -57,7 +57,7 @@ export default function RegisterScreen() {
     }
   };
   return (
-    <Layout title="Register">
+    <Layout title="Inscription">
       <Form onSubmit={handleSubmit(submitHandler)}>
         <Typography component="h1" variant="h1">
           Inscription

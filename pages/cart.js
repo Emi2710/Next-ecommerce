@@ -69,7 +69,7 @@ function CartScreen() {
   );
 
   return (
-    <Layout title="Shopping Cart">
+    <Layout title="Panier">
       <Typography component="h1" variant="h1">
         Votre panier
       </Typography>
